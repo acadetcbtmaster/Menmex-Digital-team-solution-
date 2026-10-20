@@ -1,0 +1,20 @@
+databases:
+  - name: mnx-database
+    databaseName: mnx_db
+    user: mnx_admin
+    plan: free
+
+services:
+  - type: web
+    name: mnx-digital-team-solutions
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mnx-database
+          property: connectionString
