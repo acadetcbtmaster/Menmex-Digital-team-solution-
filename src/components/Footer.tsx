@@ -179,7 +179,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
-                <span>WhatsApp Channel</span>
+                <span>WhatsApp (07053157243)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
               <a
@@ -188,7 +188,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
-                <span>Facebook Page</span>
+                <span>Facebook (@menmex)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
               <a
@@ -197,7 +197,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
-                <span>YouTube Channel</span>
+                <span>YouTube (@menmex001)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
               <a
@@ -206,7 +206,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
-                <span>TikTok Channel</span>
+                <span>TikTok (@menmex01)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

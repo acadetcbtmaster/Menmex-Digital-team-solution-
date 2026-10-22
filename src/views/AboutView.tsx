@@ -205,7 +205,7 @@ export const AboutView: React.FC = () => {
                   >
                     <span className="flex items-center gap-2">
                       <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>WhatsApp Desk</span>
+                      <span>WhatsApp (07053157243)</span>
                     </span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </a>
@@ -215,7 +215,7 @@ export const AboutView: React.FC = () => {
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
                   >
-                    <span>Facebook Page</span>
+                    <span>Facebook (@menmex)</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </a>
                   <a
@@ -224,7 +224,7 @@ export const AboutView: React.FC = () => {
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
                   >
-                    <span>YouTube Channel</span>
+                    <span>YouTube (@menmex001)</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </a>
                   <a
@@ -233,7 +233,7 @@ export const AboutView: React.FC = () => {
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
                   >
-                    <span>TikTok Account</span>
+                    <span>TikTok (@menmex01)</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </a>
                 </div>

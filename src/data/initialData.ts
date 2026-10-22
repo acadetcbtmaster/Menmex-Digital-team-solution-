@@ -19,8 +19,8 @@ export const initialData: AppDatabase = {
       link: "#educational-updates"
     },
     contactDetails: {
-      phone: "070531572",
-      whatsapp: "070531572",
+      phone: "07053157243",
+      whatsapp: "07053157243",
       email: "idrismohamed2521@gmail.com",
       address: "Digital Suite 4, Technology Hub Complex, Nigeria (Virtual & Nationwide Service Delivery)",
       workingHours: "Monday – Saturday: 8:00 AM – 7:00 PM (WAT)"
@@ -33,7 +33,7 @@ export const initialData: AppDatabase = {
       autoNotifyAdmin: true,
       notifyEmail: "idrismohamed2521@gmail.com",
       enableEmailAlerts: true,
-      notifyWhatsAppNumber: "070531572",
+      notifyWhatsAppNumber: "07053157243",
       enableWhatsAppAlerts: true,
       whatsAppGatewayProvider: "callmebot",
       whatsAppApiKey: "",
@@ -57,11 +57,11 @@ export const initialData: AppDatabase = {
     ],
     founderImage: "",
     socialLinks: {
-      whatsapp: "https://wa.me/23470531572",
-      facebook: "https://facebook.com/mnxdigitalsolutions",
-      tiktok: "https://tiktok.com/@mnx_solutions",
-      youtube: "https://youtube.com/@mnxdigitalsolutions",
-      linkedin: "https://linkedin.com/in/mnx-solutions"
+      whatsapp: "https://wa.me/2347053157243",
+      facebook: "https://www.facebook.com/share/1DzH6eycuZ/",
+      tiktok: "https://www.tiktok.com/@menmex01?_r=1&_t=ZN-9AlFGUElAus",
+      youtube: "https://youtube.com/@menmex001?si=IGbArnqmuNiRHXvv",
+      linkedin: ""
     }
   },
   services: [

@@ -622,13 +622,13 @@ export const HomeView: React.FC = () => {
                 Active leader in educational admissions dissemination, web application engineering, social media channel growth, and business digital transformation across Nigeria.
               </p>
 
-              <div className="pt-2 flex flex-wrap items-center gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-2.5">
                 <button
                   onClick={() => {
                     setActiveTab('about');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="px-5 py-2.5 bg-white text-slate-950 hover:bg-slate-100 text-xs font-semibold rounded-md transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-white text-slate-950 hover:bg-slate-100 text-xs font-semibold rounded-md transition-colors cursor-pointer"
                 >
                   View Founder Biography & Experience
                 </button>
@@ -637,11 +637,47 @@ export const HomeView: React.FC = () => {
                   href={data.founder.socialLinks.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs font-medium rounded-md transition-colors inline-flex items-center gap-2 cursor-pointer"
+                  className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-xs"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Connect With Isaiah</span>
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>WhatsApp (07053157243)</span>
                 </a>
+
+                {data.founder.socialLinks.facebook && (
+                  <a
+                    href={data.founder.socialLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-2 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs font-medium rounded-md transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <span>Facebook (@menmex)</span>
+                    <ExternalLink className="w-3 h-3 text-slate-400" />
+                  </a>
+                )}
+
+                {data.founder.socialLinks.youtube && (
+                  <a
+                    href={data.founder.socialLinks.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-2 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs font-medium rounded-md transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <span>YouTube (@menmex001)</span>
+                    <ExternalLink className="w-3 h-3 text-slate-400" />
+                  </a>
+                )}
+
+                {data.founder.socialLinks.tiktok && (
+                  <a
+                    href={data.founder.socialLinks.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-2 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs font-medium rounded-md transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <span>TikTok (@menmex01)</span>
+                    <ExternalLink className="w-3 h-3 text-slate-400" />
+                  </a>
+                )}
               </div>
             </div>
 
