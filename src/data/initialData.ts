@@ -30,6 +30,7 @@ export const initialData: AppDatabase = {
       metaDescription: "MNX DIGITAL TEAM SOLUTIONS connects individuals, students, and businesses with reliable digital services, educational information, web development, and online consultancy."
     },
     adminPassword: "mnx2026",
+    websiteViews: 1428,
     automation: {
       autoNotifyAdmin: true,
       notifyEmail: "idrismohamed2521@gmail.com",

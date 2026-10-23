@@ -87,6 +87,7 @@ function normalizeDb(raw: any): AppDatabase {
         ...(raw.settings?.seoMeta || {})
       },
       adminPassword: raw.settings?.adminPassword || (initialData.settings as any)?.adminPassword || 'mnx2026',
+      websiteViews: typeof raw.settings?.websiteViews === 'number' ? raw.settings.websiteViews : 1428,
       automation: {
         ...(initialData.settings.automation || {}),
         ...(raw.settings?.automation || {})
@@ -156,17 +157,19 @@ function readDatabase(): AppDatabase {
   return cachedDb;
 }
 
-function saveDatabase(data: AppDatabase): void {
+async function saveDatabase(data: AppDatabase): Promise<void> {
   cachedDb = data;
   saveLocalBackup(data);
 
   if (pgPool) {
-    pgPool.query(
-      'INSERT INTO mnx_store (key, data, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (key) DO UPDATE SET data = $2, updated_at = CURRENT_TIMESTAMP',
-      ['database', JSON.stringify(data)]
-    ).catch(err => {
+    try {
+      await pgPool.query(
+        'INSERT INTO mnx_store (key, data, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (key) DO UPDATE SET data = $2, updated_at = CURRENT_TIMESTAMP',
+        ['database', JSON.stringify(data)]
+      );
+    } catch (err) {
       console.error('[DATABASE] Error writing to Cloud PostgreSQL:', err);
-    });
+    }
   }
 }
 
@@ -180,6 +183,23 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.get('/api/data', (_req, res) => {
   const data = readDatabase();
   res.json({ success: true, data });
+});
+
+// Increment Website Views (Count visitors who search and click or view the site)
+app.post('/api/views/increment', async (_req, res) => {
+  const db = readDatabase();
+  if (!db.settings) db.settings = {} as any;
+  const current = typeof db.settings.websiteViews === 'number' ? db.settings.websiteViews : 1428;
+  db.settings.websiteViews = current + 1;
+  await saveDatabase(db);
+  res.json({ success: true, websiteViews: db.settings.websiteViews });
+});
+
+// Get current Website Views
+app.get('/api/views', (_req, res) => {
+  const db = readDatabase();
+  const current = typeof db.settings?.websiteViews === 'number' ? db.settings.websiteViews : 1428;
+  res.json({ success: true, websiteViews: current });
 });
 
 app.get('/api/database/status', (_req, res) => {
@@ -415,8 +435,7 @@ app.post('/api/enquiries', async (req, res) => {
 });
 
 // Update Enquiry Status & Notes
-app.patch('/api/enquiries/:id', (req, res) => {
-  const { id } = req.params;
+app.patch('/api/enquiries/:id', async (req, res) => {
   const { status, adminNotes } = req.body;
   const db = readDatabase();
 
@@ -428,7 +447,7 @@ app.patch('/api/enquiries/:id', (req, res) => {
   if (status) enquiry.status = status;
   if (adminNotes !== undefined) enquiry.adminNotes = adminNotes;
 
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, enquiry });
 });
 
@@ -551,12 +570,12 @@ app.patch('/api/contacts/:id', (req, res) => {
   }
 
   if (isRead !== undefined) contact.isRead = isRead;
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, contact });
 });
 
 // Articles CRUD
-app.post('/api/articles', (req, res) => {
+app.post('/api/articles', async (req, res) => {
   const db = readDatabase();
   const articleData = req.body as Partial<EducationalArticle>;
   
@@ -579,11 +598,11 @@ app.post('/api/articles', (req, res) => {
   };
 
   db.articles.unshift(newArticle);
-  saveDatabase(db);
+  await saveDatabase(db);
   res.status(201).json({ success: true, article: newArticle });
 });
 
-app.put('/api/articles/:id', (req, res) => {
+app.put('/api/articles/:id', async (req, res) => {
   const { id } = req.params;
   const db = readDatabase();
   const index = db.articles.findIndex(a => a.id === id);
@@ -597,20 +616,20 @@ app.put('/api/articles/:id', (req, res) => {
     id // keep id immutable
   };
 
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, article: db.articles[index] });
 });
 
-app.delete('/api/articles/:id', (req, res) => {
+app.delete('/api/articles/:id', async (req, res) => {
   const { id } = req.params;
   const db = readDatabase();
   db.articles = db.articles.filter(a => a.id !== id);
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, message: 'Article deleted successfully.' });
 });
 
 // Projects CRUD
-app.post('/api/projects', (req, res) => {
+app.post('/api/projects', async (req, res) => {
   const db = readDatabase();
   const projectData = req.body as Partial<ProjectItem>;
   
@@ -627,11 +646,11 @@ app.post('/api/projects', (req, res) => {
   };
 
   db.projects.unshift(newProject);
-  saveDatabase(db);
+  await saveDatabase(db);
   res.status(201).json({ success: true, project: newProject });
 });
 
-app.put('/api/projects/:id', (req, res) => {
+app.put('/api/projects/:id', async (req, res) => {
   const { id } = req.params;
   const db = readDatabase();
   const index = db.projects.findIndex(p => p.id === id);
@@ -645,20 +664,20 @@ app.put('/api/projects/:id', (req, res) => {
     id
   };
 
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, project: db.projects[index] });
 });
 
-app.delete('/api/projects/:id', (req, res) => {
+app.delete('/api/projects/:id', async (req, res) => {
   const { id } = req.params;
   const db = readDatabase();
   db.projects = db.projects.filter(p => p.id !== id);
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, message: 'Project removed.' });
 });
 
 // Services Update
-app.put('/api/services/:id', (req, res) => {
+app.put('/api/services/:id', async (req, res) => {
   const { id } = req.params;
   const db = readDatabase();
   const index = db.services.findIndex(s => s.id === id);
@@ -672,23 +691,23 @@ app.put('/api/services/:id', (req, res) => {
     id
   };
 
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, service: db.services[index] });
 });
 
 // Founder Profile Update
-app.put('/api/founder', (req, res) => {
+app.put('/api/founder', async (req, res) => {
   const db = readDatabase();
   db.founder = {
     ...db.founder,
     ...req.body
   };
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, founder: db.founder });
 });
 
 // Site Settings Update
-app.put('/api/settings', (req, res) => {
+app.put('/api/settings', async (req, res) => {
   const db = readDatabase();
   const incoming = req.body || {};
   db.settings = {
@@ -709,15 +728,18 @@ app.put('/api/settings', (req, res) => {
     seoMeta: {
       ...(db.settings?.seoMeta || initialData.settings.seoMeta),
       ...(incoming.seoMeta || {})
-    }
+    },
+    websiteViews: typeof incoming.websiteViews === 'number'
+      ? incoming.websiteViews
+      : (typeof db.settings?.websiteViews === 'number' ? db.settings.websiteViews : 1428)
   };
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, settings: db.settings });
 });
 
 // Reset to initial seed
-app.post('/api/reset-data', (_req, res) => {
-  saveDatabase(initialData);
+app.post('/api/reset-data', async (_req, res) => {
+  await saveDatabase(initialData);
   res.json({ success: true, data: initialData });
 });
 

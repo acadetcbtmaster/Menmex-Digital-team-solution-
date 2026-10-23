@@ -92,6 +92,7 @@ const normalizeDatabase = (raw: any): AppDatabase => {
         ...initialData.settings.seoMeta,
         ...(raw.settings?.seoMeta || {})
       },
+      websiteViews: typeof raw.settings?.websiteViews === 'number' ? raw.settings.websiteViews : 1428,
       automation: {
         ...(initialData.settings.automation || {}),
         ...(raw.settings?.automation || {})
@@ -103,7 +104,7 @@ const normalizeDatabase = (raw: any): AppDatabase => {
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [data, setData] = useState<AppDatabase>(() => {
     // Check localStorage cache first for instant initial render
-    const cached = localStorage.getItem('menmex_db_cache');
+    const cached = localStorage.getItem('mnx_db_cache') || localStorage.getItem('menmex_db_cache');
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
@@ -121,7 +122,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedServiceForEnquiry, setSelectedServiceForEnquiry] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [adminUser, setAdminUser] = useState<AdminUser | null>(() => {
-    const saved = localStorage.getItem('menmex_admin_user');
+    const saved = localStorage.getItem('mnx_admin_user') || localStorage.getItem('menmex_admin_user');
     return saved ? JSON.parse(saved) : null;
   });
 
@@ -134,7 +135,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         if (json.data) {
           const normalized = normalizeDatabase(json.data);
           setData(normalized);
-          localStorage.setItem('menmex_db_cache', JSON.stringify(normalized));
+          localStorage.setItem('mnx_db_cache', JSON.stringify(normalized));
         }
       }
     } catch (err) {
@@ -144,8 +145,44 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const incrementWebsiteViews = async () => {
+    try {
+      const res = await fetch('/api/views/increment', { method: 'POST' });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && typeof json.websiteViews === 'number') {
+          setData(prev => {
+            const next = {
+              ...prev,
+              settings: {
+                ...prev.settings,
+                websiteViews: json.websiteViews
+              }
+            };
+            localStorage.setItem('mnx_db_cache', JSON.stringify(next));
+            return next;
+          });
+        }
+      }
+    } catch {
+      setData(prev => {
+        const next = {
+          ...prev,
+          settings: {
+            ...prev.settings,
+            websiteViews: (prev.settings.websiteViews || 1428) + 1
+          }
+        };
+        localStorage.setItem('mnx_db_cache', JSON.stringify(next));
+        return next;
+      });
+    }
+  };
+
   useEffect(() => {
-    refreshData();
+    refreshData().then(() => {
+      incrementWebsiteViews();
+    });
   }, []);
 
   // Admin login (Password only)
@@ -510,13 +547,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
     const updatedDb: AppDatabase = { ...data, settings: updatedSettings };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch('/api/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(settings)
+        body: JSON.stringify(updatedSettings)
       });
       await refreshData();
       return true;
