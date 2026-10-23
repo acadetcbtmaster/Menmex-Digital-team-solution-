@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Lock
 } from 'lucide-react';
+import { TicketFollowUpPort } from './TicketFollowUpPort.tsx';
 
 export const Footer: React.FC = () => {
   const { data, setActiveTab } = useApp();
@@ -23,7 +24,10 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-[#07101E] text-slate-400 border-t border-slate-800 text-sm">
-      {/* Top CTA Banner */}
+      {/* 1. Dedicated Support Ticket Follow-up Port Interface */}
+      <TicketFollowUpPort />
+
+      {/* 2. Top CTA Banner */}
       <div className="border-b border-slate-800/80 bg-gradient-to-r from-[#0B1B3D] to-[#07101E] py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl">

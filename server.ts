@@ -432,6 +432,28 @@ app.patch('/api/enquiries/:id', (req, res) => {
   res.json({ success: true, enquiry });
 });
 
+// Support Ticket Follow-up Lookup endpoint
+app.get('/api/tickets/:ref', (req, res) => {
+  const ref = (req.params.ref || '').trim().toUpperCase();
+  const db = readDatabase();
+  const found = db.enquiries.find(e => e.referenceNumber.toUpperCase() === ref);
+  if (!found) {
+    return res.status(404).json({ success: false, message: `No ticket found for reference "${ref}".` });
+  }
+
+  res.json({
+    success: true,
+    ticket: {
+      referenceNumber: found.referenceNumber,
+      serviceCategory: found.serviceCategory,
+      subject: found.subject,
+      status: found.status,
+      submittedAt: found.submittedAt,
+      adminNotes: found.adminNotes || ''
+    }
+  });
+});
+
 // Contact Submission
 app.post('/api/contacts', async (req, res) => {
   const { name, email, phone, subject, message } = req.body;

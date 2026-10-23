@@ -3,13 +3,12 @@ import { useApp } from '../context/AppContext.tsx';
 import { 
   Menu, 
   X, 
-  ShieldCheck, 
   ChevronRight,
   Sparkles
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { activeTab, setActiveTab, data, adminUser } = useApp();
+  const { activeTab, setActiveTab, data } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -106,19 +105,8 @@ export const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* Zone 3: 1 primary action button + Admin link (if logged in) */}
+          {/* Zone 3: 1 primary action button */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-            {adminUser && (
-              <button
-                onClick={() => handleNavClick('admin')}
-                title={`Signed in as ${adminUser.name}`}
-                className="px-2 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 text-[11px] font-mono flex items-center gap-1 cursor-pointer"
-              >
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Admin</span>
-              </button>
-            )}
-
             <button
               onClick={() => handleNavClick('consultancy')}
               className="px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-md transition-all shadow-sm hover:shadow whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1 sm:gap-1.5"
@@ -157,17 +145,6 @@ export const Header: React.FC = () => {
               {item.label}
             </button>
           ))}
-          {adminUser && (
-            <div className="pt-2 border-t border-slate-800 mt-2 flex items-center justify-between">
-              <button
-                onClick={() => handleNavClick('admin')}
-                className="text-xs text-sky-400 flex items-center gap-1.5 py-1 px-3"
-              >
-                <ShieldCheck className="w-4 h-4" />
-                <span>Admin Dashboard (Active)</span>
-              </button>
-            </div>
-          )}
         </div>
       )}
     </header>
