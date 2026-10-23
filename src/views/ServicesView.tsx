@@ -25,15 +25,15 @@ export const ServicesView: React.FC = () => {
 
   const getIcon = (name: string) => {
     switch (name) {
-      case 'HelpCircle': return <HelpCircle className="w-6 h-6 text-amber-500" />;
-      case 'GraduationCap': return <GraduationCap className="w-6 h-6 text-amber-500" />;
-      case 'FileCheck': return <FileCheck className="w-6 h-6 text-amber-500" />;
-      case 'Code': return <Code className="w-6 h-6 text-amber-500" />;
-      case 'Share2': return <Share2 className="w-6 h-6 text-amber-500" />;
-      case 'TrendingUp': return <TrendingUp className="w-6 h-6 text-amber-500" />;
-      case 'Cpu': return <Cpu className="w-6 h-6 text-amber-500" />;
-      case 'Briefcase': return <Briefcase className="w-6 h-6 text-amber-500" />;
-      default: return <HelpCircle className="w-6 h-6 text-amber-500" />;
+      case 'HelpCircle': return <HelpCircle className="w-6 h-6 text-sky-500" />;
+      case 'GraduationCap': return <GraduationCap className="w-6 h-6 text-sky-500" />;
+      case 'FileCheck': return <FileCheck className="w-6 h-6 text-sky-500" />;
+      case 'Code': return <Code className="w-6 h-6 text-sky-500" />;
+      case 'Share2': return <Share2 className="w-6 h-6 text-sky-500" />;
+      case 'TrendingUp': return <TrendingUp className="w-6 h-6 text-sky-500" />;
+      case 'Cpu': return <Cpu className="w-6 h-6 text-sky-500" />;
+      case 'Briefcase': return <Briefcase className="w-6 h-6 text-sky-500" />;
+      default: return <HelpCircle className="w-6 h-6 text-sky-500" />;
     }
   };
 
@@ -44,7 +44,7 @@ export const ServicesView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-12 border border-slate-800 shadow-xl">
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider block">
               Capabilities & Departmental Scopes
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
@@ -64,18 +64,18 @@ export const ServicesView: React.FC = () => {
             <div 
               key={service.id}
               id={`dept-${service.departmentCode.toLowerCase()}`}
-              className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 hover:border-amber-400 transition-all shadow-xs"
+              className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 hover:border-sky-400 transition-all shadow-xs"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
                 {/* Department Info */}
                 <div className="lg:col-span-5 space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-amber-50 border border-amber-200/60 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-sky-50 border border-sky-200/60 flex items-center justify-center">
                       {getIcon(service.iconName)}
                     </div>
                     <div>
-                      <span className="font-mono text-xs font-bold text-amber-600 block">
+                      <span className="font-mono text-xs font-bold text-sky-600 block">
                         Department {service.departmentCode}
                       </span>
                       <h2 className="text-xl font-bold text-slate-900 leading-tight">
@@ -84,7 +84,7 @@ export const ServicesView: React.FC = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs font-semibold text-amber-700 italic">
+                  <p className="text-xs font-semibold text-sky-700 italic">
                     "{service.tagline}"
                   </p>
 
@@ -110,7 +110,7 @@ export const ServicesView: React.FC = () => {
                   <div className="pt-2">
                     <button
                       onClick={() => handleEnquireService(service.categoryName)}
-                      className="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold text-xs rounded-md transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
+                      className="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-semibold text-xs rounded-md transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
                     >
                       <span>Request This Service</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -127,7 +127,7 @@ export const ServicesView: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                     {service.features.map((feat, fIdx) => (
                       <div key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-relaxed">
-                        <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}

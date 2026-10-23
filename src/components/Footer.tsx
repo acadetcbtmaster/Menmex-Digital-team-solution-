@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
       <div className="border-b border-slate-800/80 bg-gradient-to-r from-[#0B1B3D] to-[#07101E] py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-amber-400 text-xs font-semibold uppercase tracking-wider">
+            <span className="text-sky-400 text-xs font-semibold uppercase tracking-wider">
               {data?.settings?.brandPositioning || 'Digital Solutions | Online Consultancy | Educational Information'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1.5 tracking-tight">
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
             <button
               onClick={() => handleNav('consultancy')}
-              className="w-full sm:w-auto px-5 py-2.5 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-md transition-colors cursor-pointer text-center"
+              className="w-full sm:w-auto px-5 py-2.5 text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-md transition-colors cursor-pointer text-center shadow-xs"
             >
               Request a Consultation
             </button>
@@ -47,9 +47,9 @@ export const Footer: React.FC = () => {
               href={`https://wa.me/${(data?.settings?.contactDetails?.whatsapp || '070531572').replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20MNX%20DIGITAL%20TEAM%20SOLUTIONS,%20I%20would%20like%20to%20enquire%20about%20your%20services.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-4 py-2.5 text-xs font-medium text-white border border-slate-700 hover:border-slate-500 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer text-center"
+              className="w-full sm:w-auto px-4 py-2.5 text-xs font-medium text-white border border-slate-700 hover:border-sky-400 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer text-center"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+              <MessageCircle className="w-3.5 h-3.5 text-sky-400" />
               <span>Direct WhatsApp Desk</span>
             </a>
           </div>
@@ -72,16 +72,16 @@ export const Footer: React.FC = () => {
                   />
                 </div>
               ) : (
-                <div className="w-9 h-8 px-1.5 rounded bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs sm:text-sm">
+                <div className="w-9 h-8 px-1.5 rounded bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-black text-xs sm:text-sm">
                   MNX
                 </div>
               )}
               <span className="text-lg font-bold tracking-tight text-white">
-                MNX <span className="text-amber-400 font-light">DIGITAL TEAM SOLUTIONS</span>
+                MNX <span className="text-sky-400 font-light">DIGITAL TEAM SOLUTIONS</span>
               </span>
             </div>
             
-            <p className="text-amber-400/90 text-xs font-medium italic">
+            <p className="text-sky-300/90 text-xs font-medium italic">
               "{data?.settings?.brandSlogan || 'Simplifying Digital Processes. Connecting People to Opportunities.'}"
             </p>
 
@@ -91,11 +91,11 @@ export const Footer: React.FC = () => {
 
             <div className="pt-2 text-xs text-slate-400 space-y-2">
               <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                 <span>{data?.settings?.contactDetails?.address || 'Digital Suite 4, Technology Hub Complex, Nigeria'}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                 <span>{data?.settings?.contactDetails?.workingHours || 'Monday – Saturday: 8:00 AM – 7:00 PM (WAT)'}</span>
               </div>
             </div>
@@ -108,42 +108,42 @@ export const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => handleNav('home')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('home')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Home Overview
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('about')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('about')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   About MNX & Founder
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Our 8 Service Departments
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('education')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('education')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Educational Information Centre
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('projects')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('projects')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Project Portfolio
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('resources')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('resources')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Resources & Official Portals
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('consultancy')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('consultancy')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Online Consultancy Request
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('contact')} className="hover:text-amber-400 transition-colors cursor-pointer">
+                <button onClick={() => handleNav('contact')} className="hover:text-sky-400 transition-colors cursor-pointer">
                   Official Contact Desk
                 </button>
               </li>
@@ -156,14 +156,14 @@ export const Footer: React.FC = () => {
               Core Departments
             </h3>
             <ul className="space-y-2 text-xs">
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">A. Online Consultancy</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">B. Educational Information</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">C. Online Registration</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">D. Website & Software Dev</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">E. Social Media Management</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">F. Digital Marketing & Ads</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">G. Digital Solutions & Support</button></li>
-              <li><button onClick={() => handleNav('services')} className="hover:text-amber-400 transition-colors text-left cursor-pointer">H. Business Development</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">A. Online Consultancy</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">B. Educational Information</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">C. Online Registration</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">D. Website & Software Dev</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">E. Social Media Management</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">F. Digital Marketing & Ads</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">G. Digital Solutions & Support</button></li>
+              <li><button onClick={() => handleNav('services')} className="hover:text-sky-400 transition-colors text-left cursor-pointer">H. Business Development</button></li>
             </ul>
           </div>
 
@@ -177,7 +177,7 @@ export const Footer: React.FC = () => {
                 href={data.founder.socialLinks.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
+                className="flex items-center justify-between text-slate-300 hover:text-sky-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
                 <span>WhatsApp (07053157243)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -186,7 +186,7 @@ export const Footer: React.FC = () => {
                 href={data.founder.socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
+                className="flex items-center justify-between text-slate-300 hover:text-sky-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
                 <span>Facebook (@menmex)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -195,7 +195,7 @@ export const Footer: React.FC = () => {
                 href={data.founder.socialLinks.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
+                className="flex items-center justify-between text-slate-300 hover:text-sky-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
                 <span>YouTube (@menmex001)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -204,7 +204,7 @@ export const Footer: React.FC = () => {
                 href={data.founder.socialLinks.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between text-slate-300 hover:text-amber-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
+                className="flex items-center justify-between text-slate-300 hover:text-sky-400 transition-colors p-2 rounded bg-slate-900 border border-slate-800"
               >
                 <span>TikTok (@menmex01)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -213,7 +213,7 @@ export const Footer: React.FC = () => {
 
             <div className="mt-4 pt-3 border-t border-slate-800/80">
               <div className="text-[11px] text-slate-500 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+                <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
                 <span>Verified Educational Advisory</span>
               </div>
             </div>
@@ -236,7 +236,7 @@ export const Footer: React.FC = () => {
               Leadership: Isaiah (MNX DIGITAL TEAM SOLUTIONS)
             </button>
             <span className="text-slate-700">·</span>
-            <button onClick={() => handleNav('admin')} className="hover:text-amber-400 transition-colors cursor-pointer">
+            <button onClick={() => handleNav('admin')} className="hover:text-sky-400 transition-colors cursor-pointer">
               Admin Portal
             </button>
           </div>

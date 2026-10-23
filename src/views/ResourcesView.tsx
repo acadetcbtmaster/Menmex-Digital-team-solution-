@@ -97,7 +97,7 @@ export const ResourcesView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-12 border border-slate-800 shadow-xl">
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider block">
               Central Knowledge Hub
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
@@ -113,7 +113,7 @@ export const ResourcesView: React.FC = () => {
       {/* Official Statutory Portals Directory */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 space-y-1">
-          <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">
+          <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider block">
             Accredited Institutional Gateways
           </span>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
@@ -128,7 +128,7 @@ export const ResourcesView: React.FC = () => {
           {officialPortals.map((portal, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl border border-slate-200 p-6 flex flex-col justify-between hover:border-amber-400 transition-all shadow-xs"
+              className="bg-white rounded-xl border border-slate-200 p-6 flex flex-col justify-between hover:border-sky-400 transition-all shadow-xs"
             >
               <div className="space-y-3">
                 <div>
@@ -149,7 +149,7 @@ export const ResourcesView: React.FC = () => {
                   href={portal.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold text-[#0B1B3D] hover:text-amber-600 inline-flex items-center gap-1.5 transition-colors"
+                  className="text-xs font-semibold text-[#0B1B3D] hover:text-sky-600 inline-flex items-center gap-1.5 transition-colors"
                 >
                   <span>Open Official Portal</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -164,7 +164,7 @@ export const ResourcesView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-100 rounded-xl p-8 sm:p-10 border border-slate-200">
           <div className="max-w-2xl mb-8 space-y-1">
-            <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider block">
               Step-by-Step Educational Checklists
             </span>
             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
@@ -178,7 +178,7 @@ export const ResourcesView: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded bg-amber-50 text-amber-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded bg-sky-50 text-sky-600 flex items-center justify-center">
                   <FileText className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold text-slate-900">2026 UTME Profile Code Generation Checklist</h4>
@@ -188,7 +188,7 @@ export const ResourcesView: React.FC = () => {
               </div>
               <button
                 onClick={() => handleDownloadChecklist('2026 UTME Profile Code Generation Checklist')}
-                className="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-[#0B1B3D] hover:text-amber-600 flex items-center gap-1.5 cursor-pointer"
+                className="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-[#0B1B3D] hover:text-sky-600 flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Save Checklist Guide</span>
@@ -197,7 +197,7 @@ export const ResourcesView: React.FC = () => {
 
             <div className="bg-white p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded bg-amber-50 text-amber-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded bg-sky-50 text-sky-600 flex items-center justify-center">
                   <FileText className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold text-slate-900">Post-UTME Aggregate Calculation Guide</h4>
@@ -207,7 +207,7 @@ export const ResourcesView: React.FC = () => {
               </div>
               <button
                 onClick={() => handleDownloadChecklist('Post-UTME Aggregate Calculation Guide')}
-                className="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-[#0B1B3D] hover:text-amber-600 flex items-center gap-1.5 cursor-pointer"
+                className="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-[#0B1B3D] hover:text-sky-600 flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Save Aggregate Formula</span>
@@ -216,7 +216,7 @@ export const ResourcesView: React.FC = () => {
 
             <div className="bg-white p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded bg-amber-50 text-amber-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded bg-sky-50 text-sky-600 flex items-center justify-center">
                   <FileText className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold text-slate-900">JAMB CAPS O'Level Upload Verification Protocol</h4>
@@ -226,7 +226,7 @@ export const ResourcesView: React.FC = () => {
               </div>
               <button
                 onClick={() => handleDownloadChecklist('JAMB CAPS OLevel Upload Verification Protocol')}
-                className="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-[#0B1B3D] hover:text-amber-600 flex items-center gap-1.5 cursor-pointer"
+                className="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-[#0B1B3D] hover:text-sky-600 flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Save Upload Checklist</span>
@@ -240,7 +240,7 @@ export const ResourcesView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto space-y-6">
           <div className="text-center space-y-2">
-            <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider">
               Common Inquiries Answered
             </span>
             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
@@ -261,11 +261,11 @@ export const ResourcesView: React.FC = () => {
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-slate-900 hover:text-amber-600 transition-colors cursor-pointer"
+                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-slate-900 hover:text-sky-600 transition-colors cursor-pointer"
                   >
                     <span>{faq.q}</span>
                     {isOpen ? (
-                      <ChevronUp className="w-4 h-4 text-amber-600 shrink-0" />
+                      <ChevronUp className="w-4 h-4 text-sky-600 shrink-0" />
                     ) : (
                       <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
                     )}

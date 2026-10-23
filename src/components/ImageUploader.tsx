@@ -131,7 +131,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           onClick={() => setActiveTab('gallery')}
           className={`px-3 py-1.5 rounded-md font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
             activeTab === 'gallery'
-              ? 'bg-[#0B1B3D] text-amber-300 shadow-xs'
+              ? 'bg-[#0B1B3D] text-sky-300 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -144,7 +144,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           onClick={() => setActiveTab('url')}
           className={`px-3 py-1.5 rounded-md font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
             activeTab === 'url'
-              ? 'bg-[#0B1B3D] text-amber-300 shadow-xs'
+              ? 'bg-[#0B1B3D] text-sky-300 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -172,7 +172,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       {/* Current Image Preview */}
       {currentImage ? (
         <div className="space-y-2">
-          <div className="relative rounded-xl overflow-hidden border-2 border-amber-400/60 bg-slate-900 shadow-md max-h-56 group">
+          <div className="relative rounded-xl overflow-hidden border-2 border-sky-400/60 bg-slate-900 shadow-md max-h-56 group">
             <img
               src={currentImage}
               alt="Selected Preview"
@@ -183,7 +183,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="px-3.5 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded-lg text-xs font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
+                className="px-3.5 py-2 bg-sky-600 hover:bg-sky-500 text-white shadow-xs rounded-lg text-xs font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Smartphone className="w-4 h-4" />
                 <span>Pick Another Photo</span>
@@ -198,7 +198,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
               </button>
             </div>
             <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between pointer-events-none">
-              <span className="bg-slate-950/80 backdrop-blur-xs text-amber-300 text-[10px] font-mono font-semibold px-2 py-0.5 rounded border border-amber-400/30">
+              <span className="bg-slate-950/80 backdrop-blur-xs text-sky-300 text-[10px] font-mono font-semibold px-2 py-0.5 rounded border border-sky-400/30">
                 Ready to Save
               </span>
               {fileDetails && (
@@ -231,18 +231,18 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
               onClick={() => !loading && fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-xl p-6 text-center transition-all cursor-pointer ${
                 loading
-                  ? 'border-amber-400 bg-amber-50/60'
-                  : 'border-slate-300 hover:border-amber-500 hover:bg-amber-50/20 bg-white'
+                  ? 'border-sky-400 bg-sky-50/60'
+                  : 'border-slate-300 hover:border-sky-500 hover:bg-sky-50/20 bg-white'
               }`}
             >
               {loading ? (
                 <div className="py-4 space-y-2">
-                  <div className="w-8 h-8 border-3 border-amber-600 border-t-transparent rounded-full animate-spin mx-auto" />
-                  <p className="text-xs font-bold text-amber-900">Processing image from your device gallery...</p>
+                  <div className="w-8 h-8 border-3 border-sky-600 border-t-transparent rounded-full animate-spin mx-auto" />
+                  <p className="text-xs font-bold text-sky-950">Processing image from your device gallery...</p>
                 </div>
               ) : (
                 <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 mx-auto flex items-center justify-center shadow-xs">
+                  <div className="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 mx-auto flex items-center justify-center shadow-xs">
                     <FolderOpen className="w-6 h-6" />
                   </div>
                   <div>
@@ -255,9 +255,9 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                   </div>
                   <button
                     type="button"
-                    className="px-4 py-2 bg-[#0B1B3D] text-amber-300 hover:text-white rounded-lg text-xs font-bold inline-flex items-center gap-2 pointer-events-none shadow-xs"
+                    className="px-4 py-2 bg-[#0B1B3D] text-sky-300 hover:text-white rounded-lg text-xs font-bold inline-flex items-center gap-2 pointer-events-none shadow-xs"
                   >
-                    <Smartphone className="w-4 h-4 text-amber-400" />
+                    <Smartphone className="w-4 h-4 text-sky-400" />
                     <span>Choose from Device Gallery</span>
                   </button>
                   <p className="text-[10px] text-slate-400">
@@ -280,12 +280,12 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                   placeholder="https://example.com/photo.jpg"
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
-                  className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-amber-500 focus:bg-white"
+                  className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-sky-500 focus:bg-white"
                 />
                 <button
                   type="button"
                   onClick={handleApplyUrl}
-                  className="px-4 py-2 bg-[#0B1B3D] hover:bg-slate-800 text-amber-300 rounded-lg text-xs font-bold cursor-pointer shrink-0"
+                  className="px-4 py-2 bg-[#0B1B3D] hover:bg-slate-800 text-sky-300 rounded-lg text-xs font-bold cursor-pointer shrink-0"
                 >
                   Use URL
                 </button>

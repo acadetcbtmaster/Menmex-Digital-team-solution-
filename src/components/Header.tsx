@@ -36,13 +36,13 @@ export const Header: React.FC = () => {
         <div className="bg-[#07101E] border-b border-slate-800/80 px-3 sm:px-4 py-1.5 text-xs text-slate-300 w-full overflow-hidden">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
             <div className="flex items-center gap-2 overflow-hidden truncate min-w-0 flex-1">
-              <span className="text-amber-400 font-semibold uppercase tracking-wider text-[10px] shrink-0">Official Bulletin</span>
+              <span className="text-sky-400 font-semibold uppercase tracking-wider text-[10px] shrink-0">Official Bulletin</span>
               <span className="text-slate-500 shrink-0">·</span>
               <span className="truncate text-[11px] sm:text-xs text-slate-300 min-w-0">{data?.settings?.announcementBanner?.text}</span>
             </div>
             <button
               onClick={() => handleNavClick('education')}
-              className="text-amber-400 hover:text-amber-300 text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 flex items-center gap-0.5 cursor-pointer ml-1"
+              className="text-sky-400 hover:text-sky-300 text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 flex items-center gap-0.5 cursor-pointer ml-1"
             >
               <span>Updates</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -69,13 +69,13 @@ export const Header: React.FC = () => {
                 />
               </div>
             ) : (
-              <div className="w-8 h-8 sm:w-10 sm:h-9 px-1.5 rounded bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs sm:text-sm tracking-wider group-hover:border-amber-400 transition-colors shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-9 px-1.5 rounded bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-black text-xs sm:text-sm tracking-wider group-hover:border-sky-400 transition-colors shrink-0">
                 MNX
               </div>
             )}
             <div className="flex flex-col min-w-0">
-              <span className="text-sm sm:text-base lg:text-lg font-bold tracking-tight text-white group-hover:text-amber-300 transition-colors truncate">
-                MNX <span className="text-amber-400 font-light">DIGITAL</span>
+              <span className="text-sm sm:text-base lg:text-lg font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors truncate">
+                MNX <span className="text-sky-400 font-light">DIGITAL</span>
               </span>
               <span className="hidden sm:inline-block text-[9px] sm:text-[10px] tracking-wider text-slate-400 uppercase font-medium truncate">
                 Team Solutions & Consultancy
@@ -93,13 +93,13 @@ export const Header: React.FC = () => {
                   onClick={() => handleNavClick(item.id)}
                   className={`relative py-1 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                     isActive 
-                      ? 'text-amber-400 font-semibold' 
+                      ? 'text-sky-400 font-semibold' 
                       : 'text-slate-300 hover:text-white'
                   }`}
                 >
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 rounded-full" />
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-sky-400 rounded-full" />
                   )}
                 </button>
               );
@@ -113,7 +113,7 @@ export const Header: React.FC = () => {
               title={adminUser ? `Signed in as ${adminUser.name}` : 'Administrative Portal'}
               className={`p-1.5 sm:p-2 rounded-lg transition-colors cursor-pointer text-xs flex items-center gap-1.5 ${
                 activeTab === 'admin' 
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' 
+                  ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40' 
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
               }`}
             >
@@ -125,9 +125,9 @@ export const Header: React.FC = () => {
 
             <button
               onClick={() => handleNavClick('consultancy')}
-              className="px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-md transition-all shadow-sm hover:shadow whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1 sm:gap-1.5"
+              className="px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-md transition-all shadow-sm hover:shadow whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1 sm:gap-1.5"
             >
-              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-900" />
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
               <span className="hidden sm:inline">Request Consultation</span>
               <span className="sm:hidden">Enquire</span>
             </button>
@@ -141,6 +141,7 @@ export const Header: React.FC = () => {
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
       </div>
 
@@ -153,7 +154,7 @@ export const Header: React.FC = () => {
               onClick={() => handleNavClick(item.id)}
               className={`block w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
                 activeTab === item.id
-                  ? 'bg-amber-500/10 text-amber-400 font-semibold'
+                  ? 'bg-sky-500/10 text-sky-400 font-semibold'
                   : 'text-slate-300 hover:bg-slate-800 hover:text-white'
               }`}
             >
@@ -163,7 +164,7 @@ export const Header: React.FC = () => {
           <div className="pt-2 border-t border-slate-800 mt-2 flex items-center justify-between">
             <button
               onClick={() => handleNavClick('admin')}
-              className="text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1.5 py-1 px-3"
+              className="text-xs text-slate-400 hover:text-sky-400 flex items-center gap-1.5 py-1 px-3"
             >
               <ShieldCheck className="w-4 h-4" />
               <span>Admin Management Dashboard</span>

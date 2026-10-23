@@ -171,7 +171,7 @@ export const AdminDashboardView: React.FC = () => {
       <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
         <div className="bg-white rounded-xl border border-slate-200 shadow-xl max-w-md w-full overflow-hidden">
           <div className="bg-[#0B1B3D] text-white p-6 text-center border-b border-slate-800">
-            <div className="w-12 h-12 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-400 mx-auto flex items-center justify-center mb-2">
+            <div className="w-12 h-12 rounded-lg bg-sky-500/20 border border-sky-400/40 text-sky-400 mx-auto flex items-center justify-center mb-2">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h1 className="text-xl font-bold tracking-tight">MNX DIGITAL TEAM SOLUTIONS Admin Gateway</h1>
@@ -197,7 +197,7 @@ export const AdminDashboardView: React.FC = () => {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
               />
             </div>
 
@@ -210,11 +210,11 @@ export const AdminDashboardView: React.FC = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
               />
             </div>
 
-            <div className="bg-amber-50/80 border border-amber-200/80 rounded-lg p-3 text-[11px] text-amber-900 leading-relaxed">
+            <div className="bg-sky-50 border border-sky-200/80 rounded-lg p-3 text-[11px] text-sky-950 leading-relaxed">
               <span className="font-bold block">Evaluation Credentials:</span>
               Username: <code className="font-mono bg-white px-1 rounded">admin</code> · Passcode: <code className="font-mono bg-white px-1 rounded">mnx2026</code>
             </div>
@@ -222,7 +222,7 @@ export const AdminDashboardView: React.FC = () => {
             <button
               type="submit"
               disabled={authenticating}
-              className="w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs rounded-md transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              className="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold text-xs rounded-md transition-all shadow-sm cursor-pointer disabled:opacity-50"
             >
               {authenticating ? 'Verifying Credentials...' : 'Authenticate & Open Dashboard'}
             </button>
@@ -436,13 +436,13 @@ export const AdminDashboardView: React.FC = () => {
       <div className="bg-[#0B1B3D] text-white border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="px-2.5 py-1.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center font-bold text-xs tracking-wider">
+            <div className="px-2.5 py-1.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-400 flex items-center justify-center font-bold text-xs tracking-wider">
               MNX
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-base tracking-tight text-white">MNX Central Management</span>
-                <span className="text-[10px] bg-amber-500/20 text-amber-300 font-mono px-2 py-0.5 rounded border border-amber-500/30">
+                <span className="text-[10px] bg-sky-500/20 text-sky-300 font-mono px-2 py-0.5 rounded border border-sky-500/30">
                   {adminUser.role}
                 </span>
               </div>
@@ -462,7 +462,7 @@ export const AdminDashboardView: React.FC = () => {
               className="text-xs text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded transition-colors flex items-center gap-1.5 cursor-pointer"
               title="Restore Initial Seed"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
+              <RotateCcw className="w-3.5 h-3.5 text-sky-400" />
               <span>Reset Seed</span>
             </button>
 
@@ -482,7 +482,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('enquiries')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'enquiries'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -494,7 +494,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('articles')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'articles'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -506,7 +506,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('projects')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'projects'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -518,7 +518,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('services')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'services'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -530,7 +530,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('founder')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'founder'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -542,7 +542,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('announcements')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'announcements'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -554,7 +554,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('contacts')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'contacts'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -566,7 +566,7 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('settings')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'settings'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -578,11 +578,11 @@ export const AdminDashboardView: React.FC = () => {
             onClick={() => setActiveAdminTab('automation')}
             className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
               activeAdminTab === 'automation'
-                ? 'border-amber-400 text-amber-300 font-bold bg-slate-900/50'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Bell className="w-3.5 h-3.5 text-amber-400" />
+            <Bell className="w-3.5 h-3.5 text-sky-400" />
             <span>Automated Alerts (Email & WhatsApp)</span>
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Gateway Active" />
           </button>
@@ -629,7 +629,7 @@ export const AdminDashboardView: React.FC = () => {
                 placeholder="Search by ref number, applicant name, or category..."
                 value={enquirySearch}
                 onChange={(e) => setEnquirySearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-amber-500"
+                className="w-full pl-9 pr-4 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-sky-500"
               />
             </div>
 
@@ -650,7 +650,7 @@ export const AdminDashboardView: React.FC = () => {
                           : enq.status === 'In Progress' 
                           ? 'bg-blue-100 text-blue-800' 
                           : enq.status === 'Under Review' 
-                          ? 'bg-amber-100 text-amber-800' 
+                          ? 'bg-sky-100 text-sky-800' 
                           : enq.status === 'Closed'
                           ? 'bg-slate-100 text-slate-600'
                           : 'bg-rose-100 text-rose-800'
@@ -662,7 +662,7 @@ export const AdminDashboardView: React.FC = () => {
                       <span className="font-semibold text-slate-900 text-xs block">{enq.fullName}</span>
                       <span className="text-[11px] text-slate-500 font-mono block">{enq.whatsappNumber}</span>
                     </div>
-                    <div className="text-[11px] text-amber-700 font-medium">
+                    <div className="text-[11px] text-sky-700 font-medium">
                       {enq.serviceCategory}
                     </div>
                     <p className="text-xs text-slate-700 line-clamp-2">
@@ -676,7 +676,7 @@ export const AdminDashboardView: React.FC = () => {
                           setEditingStatus(enq.status);
                           setEditingNotes(enq.adminNotes || '');
                         }}
-                        className="px-3 py-1 bg-[#0B1B3D] hover:bg-slate-800 text-amber-300 rounded text-xs font-semibold cursor-pointer"
+                        className="px-3 py-1 bg-[#0B1B3D] hover:bg-slate-800 text-sky-300 rounded text-xs font-semibold cursor-pointer"
                       >
                         Manage
                       </button>
@@ -734,7 +734,7 @@ export const AdminDashboardView: React.FC = () => {
                                 : enq.status === 'In Progress' 
                                 ? 'bg-blue-100 text-blue-800' 
                                 : enq.status === 'Under Review' 
-                                ? 'bg-amber-100 text-amber-800' 
+                                ? 'bg-sky-100 text-sky-800' 
                                 : enq.status === 'Closed'
                                 ? 'bg-slate-100 text-slate-600'
                                 : 'bg-rose-100 text-rose-800'
@@ -768,7 +768,7 @@ export const AdminDashboardView: React.FC = () => {
                 <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full border border-slate-200 overflow-hidden text-slate-800">
                   <div className="bg-[#0B1B3D] text-white p-5 flex items-center justify-between">
                     <div>
-                      <span className="text-amber-400 font-mono text-xs font-bold block">
+                      <span className="text-sky-400 font-mono text-xs font-bold block">
                         {selectedEnquiry.referenceNumber}
                       </span>
                       <h3 className="text-base font-bold text-white mt-0.5">
@@ -800,7 +800,7 @@ export const AdminDashboardView: React.FC = () => {
                       </div>
                       <div>
                         <span className="text-slate-400 block text-[10px] uppercase font-bold">Service Category</span>
-                        <span className="font-semibold text-amber-700">{selectedEnquiry.serviceCategory}</span>
+                        <span className="font-semibold text-sky-700">{selectedEnquiry.serviceCategory}</span>
                       </div>
                     </div>
 
@@ -868,7 +868,7 @@ export const AdminDashboardView: React.FC = () => {
                           await updateEnquiryStatus(selectedEnquiry.id, editingStatus, editingNotes);
                           setSelectedEnquiry(null);
                         }}
-                        className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded text-xs cursor-pointer"
+                        className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold rounded text-xs cursor-pointer"
                       >
                         Save Status & Notes
                       </button>
@@ -909,7 +909,7 @@ export const AdminDashboardView: React.FC = () => {
                   });
                   setArticleModalOpen(true);
                 }}
-                className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs rounded-md flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold text-xs rounded-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Publish New Article</span>
@@ -928,7 +928,7 @@ export const AdminDashboardView: React.FC = () => {
                 <div key={art.id} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between">
                   <div className="p-5 space-y-2.5">
                     <div className="flex items-center justify-between text-[11px] text-slate-500">
-                      <span className="font-semibold text-amber-700">{art.category}</span>
+                      <span className="font-semibold text-sky-700">{art.category}</span>
                       <span>{art.publishDate}</span>
                     </div>
                     <h3 className="font-bold text-slate-900 text-sm line-clamp-2">
@@ -939,7 +939,7 @@ export const AdminDashboardView: React.FC = () => {
                     </p>
                     <div className="pt-2 text-[11px] text-slate-400">
                       {art.isOfficialAnnouncement ? (
-                        <span className="text-amber-800 font-medium">✓ Verified: {art.officialSource}</span>
+                        <span className="text-sky-800 font-medium">✓ Verified: {art.officialSource}</span>
                       ) : (
                         <span>General Advisory Guide</span>
                       )}
@@ -957,7 +957,7 @@ export const AdminDashboardView: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleEditArticle(art)}
-                        className="p-1.5 text-slate-600 hover:text-amber-700 rounded hover:bg-slate-200 transition-colors cursor-pointer"
+                        className="p-1.5 text-slate-600 hover:text-sky-700 rounded hover:bg-slate-200 transition-colors cursor-pointer"
                         title="Edit"
                       >
                         <Edit3 className="w-3.5 h-3.5" />
@@ -1036,13 +1036,13 @@ export const AdminDashboardView: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="p-3 bg-amber-50/70 rounded-lg border border-amber-200/60 space-y-3">
-                      <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-amber-900">
+                    <div className="p-3 bg-sky-50 rounded-lg border border-sky-200/60 space-y-3">
+                      <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-sky-950">
                         <input
                           type="checkbox"
                           checked={articleForm.isOfficialAnnouncement}
                           onChange={(e) => setArticleForm({ ...articleForm, isOfficialAnnouncement: e.target.checked })}
-                          className="rounded text-amber-500 focus:ring-amber-400"
+                          className="rounded text-sky-500 focus:ring-sky-500"
                         />
                         <span>Verified Statutory Announcement (Checked against official regulatory gazette)</span>
                       </label>
@@ -1114,7 +1114,7 @@ export const AdminDashboardView: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSaving}
-                        className="px-5 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded text-xs font-bold cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                        className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white shadow-xs rounded text-xs font-bold cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
                       >
                         {isSaving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                         <span>
@@ -1157,7 +1157,7 @@ export const AdminDashboardView: React.FC = () => {
                   });
                   setProjectModalOpen(true);
                 }}
-                className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs rounded-md flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold text-xs rounded-md flex items-center gap-1.5 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add New Project</span>
@@ -1176,7 +1176,7 @@ export const AdminDashboardView: React.FC = () => {
                 <div key={proj.id} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs p-6 space-y-4">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <span className="text-[11px] font-bold text-amber-600 uppercase block">{proj.category}</span>
+                      <span className="text-[11px] font-bold text-sky-600 uppercase block">{proj.category}</span>
                       <h3 className="text-base font-bold text-slate-900">{proj.title}</h3>
                     </div>
                     <span className="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200">
@@ -1323,7 +1323,7 @@ export const AdminDashboardView: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSaving}
-                        className="px-5 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded text-xs font-bold cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                        className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white shadow-xs rounded text-xs font-bold cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
                       >
                         {isSaving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                         <span>{isSaving ? 'Saving...' : (editingProjectId ? 'Save Changes' : 'Save Project')}</span>
@@ -1350,7 +1350,7 @@ export const AdminDashboardView: React.FC = () => {
               {data.services.map((svc) => (
                 <div key={svc.id} className="bg-white rounded-xl border border-slate-200 p-6 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-amber-600">
+                    <span className="font-mono text-xs font-bold text-sky-600">
                       Dept {svc.departmentCode} · {svc.categoryName}
                     </span>
                     <span className="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-mono">
@@ -1479,7 +1479,7 @@ export const AdminDashboardView: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
+                  className="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
                 >
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   <span>{isSaving ? 'Saving...' : 'Save Founder Profile'}</span>
@@ -1523,7 +1523,7 @@ export const AdminDashboardView: React.FC = () => {
                       ...settingsForm,
                       announcementBanner: { ...settingsForm.announcementBanner, enabled: e.target.checked }
                     })}
-                    className="rounded text-amber-500 focus:ring-amber-400"
+                    className="rounded text-sky-500 focus:ring-sky-500"
                   />
                   <span>Display Top Official Bulletin Ticker</span>
                 </label>
@@ -1590,7 +1590,7 @@ export const AdminDashboardView: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
+                  className="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
                 >
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   <span>{isSaving ? 'Saving...' : 'Save Changes'}</span>
@@ -1762,7 +1762,7 @@ export const AdminDashboardView: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
+                  className="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
                 >
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   <span>{isSaving ? 'Saving...' : 'Save All Settings'}</span>
@@ -1787,8 +1787,8 @@ export const AdminDashboardView: React.FC = () => {
             <div className="bg-[#0B1B3D] text-white rounded-xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-bold border border-amber-500/30 mb-2">
-                    <Activity className="w-3.5 h-3.5 text-amber-400" />
+                  <div className="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 px-3 py-1 rounded-full text-xs font-bold border border-sky-500/30 mb-2">
+                    <Activity className="w-3.5 h-3.5 text-sky-400" />
                     <span>Real-Time Multi-Channel Routing</span>
                   </div>
                   <h2 className="text-2xl font-extrabold tracking-tight text-white">
@@ -1803,7 +1803,7 @@ export const AdminDashboardView: React.FC = () => {
                   type="button"
                   onClick={handleTestDispatch}
                   disabled={testingDispatch}
-                  className="px-4 py-2.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shrink-0"
+                  className="px-4 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold rounded-lg text-xs transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shrink-0"
                 >
                   {testingDispatch ? (
                     <>
@@ -1822,8 +1822,8 @@ export const AdminDashboardView: React.FC = () => {
               {/* 3-Channel Live Flow Visualization */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-3 border-t border-slate-800/80 text-xs">
                 <div className="p-3.5 rounded-lg bg-slate-900/80 border border-slate-700/60 space-y-1">
-                  <div className="flex items-center gap-2 text-amber-400 font-bold">
-                    <ShieldCheck className="w-4 h-4 text-amber-400" />
+                  <div className="flex items-center gap-2 text-sky-400 font-bold">
+                    <ShieldCheck className="w-4 h-4 text-sky-400" />
                     <span>1. Admin Panel</span>
                   </div>
                   <p className="text-[11px] text-slate-300">
@@ -1932,7 +1932,7 @@ export const AdminDashboardView: React.FC = () => {
                         notifyEmail: e.target.value
                       })}
                       placeholder="idrismohamed2521@gmail.com"
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-amber-500 focus:outline-hidden"
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-sky-500 focus:outline-hidden"
                     />
                     <p className="text-[11px] text-slate-500 mt-1">
                       Every enquiry and contact submission sends an executive alert to this email address.
@@ -1976,7 +1976,7 @@ export const AdminDashboardView: React.FC = () => {
                         notifyWhatsAppNumber: e.target.value
                       })}
                       placeholder="+234 812 345 6789"
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-amber-500 focus:outline-hidden"
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-sky-500 focus:outline-hidden"
                     />
                     <p className="text-[11px] text-slate-500 mt-1">
                       Example: <span className="font-mono text-slate-700">+2348123456789</span>. This is where WhatsApp messages are delivered automatically.
@@ -1993,14 +1993,14 @@ export const AdminDashboardView: React.FC = () => {
                         onClick={() => setAutomationForm({ ...automationForm, whatsAppGatewayProvider: 'callmebot' })}
                         className={`p-3 rounded-lg border cursor-pointer transition-all ${
                           automationForm.whatsAppGatewayProvider === 'callmebot'
-                            ? 'bg-amber-50 border-amber-400 text-slate-900'
+                            ? 'bg-sky-50 border-sky-400 text-slate-900'
                             : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-bold text-xs">CallMeBot Free WhatsApp API</span>
                           {automationForm.whatsAppGatewayProvider === 'callmebot' && (
-                            <Check className="w-3.5 h-3.5 text-amber-600" />
+                            <Check className="w-3.5 h-3.5 text-sky-600" />
                           )}
                         </div>
                         <p className="text-[10px] text-slate-500 leading-normal">
@@ -2012,14 +2012,14 @@ export const AdminDashboardView: React.FC = () => {
                         onClick={() => setAutomationForm({ ...automationForm, whatsAppGatewayProvider: 'webhook' })}
                         className={`p-3 rounded-lg border cursor-pointer transition-all ${
                           automationForm.whatsAppGatewayProvider === 'webhook'
-                            ? 'bg-amber-50 border-amber-400 text-slate-900'
+                            ? 'bg-sky-50 border-sky-400 text-slate-900'
                             : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-bold text-xs">Custom Webhook / Twilio / Meta</span>
                           {automationForm.whatsAppGatewayProvider === 'webhook' && (
-                            <Check className="w-3.5 h-3.5 text-amber-600" />
+                            <Check className="w-3.5 h-3.5 text-sky-600" />
                           )}
                         </div>
                         <p className="text-[10px] text-slate-500 leading-normal">
@@ -2032,13 +2032,24 @@ export const AdminDashboardView: React.FC = () => {
                   {/* CallMeBot API Key & 30-Second Guide */}
                   {automationForm.whatsAppGatewayProvider === 'callmebot' && (
                     <div className="space-y-3 pt-2">
-                      <div className="bg-amber-50/80 border border-amber-200 p-3.5 rounded-lg text-slate-800 space-y-1.5">
-                        <span className="font-bold text-amber-900 text-[11px] block uppercase tracking-wider">
+                      <div className="bg-sky-50 border border-sky-200 p-3.5 rounded-lg text-slate-800 space-y-1.5">
+                        <span className="font-bold text-sky-950 text-[11px] block uppercase tracking-wider">
                           How CallMeBot sends WhatsApp messages automatically (30-second setup):
                         </span>
-                        <ol className="list-decimal list-inside text-[11px] text-slate-700 space-y-1 leading-relaxed">
-                          <li>Save the official CallMeBot WhatsApp number <strong>+34 644 44 44 11</strong> in your phone's contacts as "CallMeBot".</li>
-                          <li>Open WhatsApp and send this text to it: <code className="bg-white px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold text-slate-900">I allow callmebot to send me messages</code></li>
+                        <ol className="list-decimal list-inside text-[11px] text-slate-700 space-y-1.5 leading-relaxed">
+                          <li>
+                            Save active CallMeBot WhatsApp number <strong>+34 623 78 64 49</strong> or{' '}
+                            <a 
+                              href="https://wa.me/34623786449?text=I%20allow%20callmebot%20to%20send%20me%20messages" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-sky-800 underline font-bold hover:text-sky-950 inline-flex items-center gap-1"
+                            >
+                              <span>Tap here to open in WhatsApp</span>
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </li>
+                          <li>Send this exact text message to the bot: <code className="bg-white px-1.5 py-0.5 rounded border border-sky-300 font-mono font-bold text-slate-900">I allow callmebot to send me messages</code></li>
                           <li>CallMeBot will instantly reply with your free personal API key.</li>
                           <li>Paste your API key into the field below and click <strong>"Save Automation Settings"</strong>!</li>
                         </ol>
@@ -2056,7 +2067,7 @@ export const AdminDashboardView: React.FC = () => {
                             whatsAppApiKey: e.target.value
                           })}
                           placeholder="e.g. 1234567"
-                          className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-amber-500 focus:outline-hidden"
+                          className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-sky-500 focus:outline-hidden"
                         />
                       </div>
                     </div>
@@ -2076,7 +2087,7 @@ export const AdminDashboardView: React.FC = () => {
                           customWebhookUrl: e.target.value
                         })}
                         placeholder="https://hooks.zapier.com/hooks/catch/... or https://api.twilio.com/..."
-                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-amber-500 focus:outline-hidden"
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-xs font-mono focus:border-sky-500 focus:outline-hidden"
                       />
                     </div>
                   )}
@@ -2087,7 +2098,7 @@ export const AdminDashboardView: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSaving}
-                    className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
+                    className="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold rounded text-xs cursor-pointer flex items-center gap-2 disabled:opacity-50 transition-all shadow-xs"
                   >
                     {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                     <span>{isSaving ? 'Saving...' : 'Save Automation Settings'}</span>
@@ -2120,7 +2131,7 @@ export const AdminDashboardView: React.FC = () => {
                   disabled={testingDispatch}
                   className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
-                  <Send className="w-3 h-3 text-amber-500" />
+                  <Send className="w-3 h-3 text-sky-500" />
                   <span>Test New Event</span>
                 </button>
               </div>
@@ -2185,7 +2196,7 @@ export const AdminDashboardView: React.FC = () => {
                             <span className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded border ${
                               log.channels.whatsApp.status === 'sent'
                                 ? 'text-emerald-800 bg-emerald-100 border-emerald-300'
-                                : 'text-amber-800 bg-amber-50 border-amber-200'
+                                : 'text-sky-800 bg-sky-50 border-sky-200'
                             }`}>
                               <Smartphone className="w-3 h-3 text-emerald-600" />
                               <span>Auto-Dispatched</span>

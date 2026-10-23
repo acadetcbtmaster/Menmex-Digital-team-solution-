@@ -52,13 +52,13 @@ export const AboutView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-12 border border-slate-800 shadow-xl relative overflow-hidden">
           <div className="max-w-3xl space-y-4 relative z-10">
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider block">
               Corporate Overview & Identity
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
               About MNX DIGITAL TEAM SOLUTIONS
             </h1>
-            <p className="text-amber-300/90 text-sm sm:text-base font-medium italic">
+            <p className="text-sky-300/90 text-sm sm:text-base font-medium italic">
               "{data.settings.brandSlogan}"
             </p>
             <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
@@ -74,11 +74,11 @@ export const AboutView: React.FC = () => {
           
           {/* Vision */}
           <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-xs space-y-4">
-            <div className="w-12 h-12 rounded-lg bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-600">
+            <div className="w-12 h-12 rounded-lg bg-sky-50 border border-sky-200/80 flex items-center justify-center text-sky-600">
               <Compass className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-[11px] font-bold text-amber-600 uppercase tracking-wider">Strategic Destination</span>
+              <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider">Strategic Destination</span>
               <h2 className="text-xl font-bold text-slate-900 mt-0.5">Vision Statement</h2>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
@@ -107,7 +107,7 @@ export const AboutView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-xl border border-slate-200 p-8 sm:p-10 shadow-xs space-y-6">
           <div>
-            <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider">
               Strategic Blueprint
             </span>
             <h2 className="text-2xl font-bold text-slate-900 tracking-tight mt-1">
@@ -124,7 +124,7 @@ export const AboutView: React.FC = () => {
                 key={index}
                 className="flex items-start gap-3 p-3.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs sm:text-sm text-slate-800"
               >
-                <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-[11px] shrink-0 mt-0.5">
+                <div className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-[11px] shrink-0 mt-0.5">
                   {index + 1}
                 </div>
                 <span className="leading-relaxed">{obj}</span>
@@ -140,20 +140,20 @@ export const AboutView: React.FC = () => {
           
           <div className="border-b border-slate-800 pb-6 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="text-amber-400 text-xs font-semibold uppercase tracking-wider block">
+              <span className="text-sky-400 text-xs font-semibold uppercase tracking-wider block">
                 Executive Leadership
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
                 Founder Profile: {data.founder.name}
               </h2>
-              <p className="text-amber-300 text-xs font-medium mt-0.5">
+              <p className="text-sky-300 text-xs font-medium mt-0.5">
                 {data.founder.title}
               </p>
             </div>
 
             <button
               onClick={handleConsultFounder}
-              className="px-5 py-2.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-semibold text-xs rounded-md transition-all self-start sm:self-auto cursor-pointer"
+              className="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-semibold text-xs rounded-md transition-all self-start sm:self-auto cursor-pointer"
             >
               Consult With Isaiah
             </button>
@@ -168,17 +168,17 @@ export const AboutView: React.FC = () => {
                   <img
                     src={data.founder.founderImage}
                     alt={data?.founder?.name || 'Isaiah (MNX DIGITAL TEAM SOLUTIONS)'}
-                    className="w-full aspect-square rounded-xl object-cover border-2 border-amber-400/50 shadow-2xl"
+                    className="w-full aspect-square rounded-xl object-cover border-2 border-sky-400/50 shadow-2xl"
                     referrerPolicy="no-referrer"
                   />
                 ) : (
-                  <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-[#0F224D] via-[#0B1B3D] to-[#07101E] border-2 border-amber-400/50 shadow-2xl flex flex-col items-center justify-center p-6 text-center space-y-3">
-                    <div className="w-20 h-20 rounded-full bg-amber-500/10 border-2 border-amber-400/60 flex items-center justify-center text-amber-400 text-3xl font-black tracking-tight shadow-inner">
+                  <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-[#0F224D] via-[#0B1B3D] to-[#07101E] border-2 border-sky-400/50 shadow-2xl flex flex-col items-center justify-center p-6 text-center space-y-3">
+                    <div className="w-20 h-20 rounded-full bg-sky-500/10 border-2 border-sky-400/60 flex items-center justify-center text-sky-400 text-3xl font-black tracking-tight shadow-inner">
                       IM
                     </div>
                     <div>
                       <span className="font-bold text-white text-base block">{data.founder.name}</span>
-                      <span className="text-xs text-amber-300 font-medium block mt-0.5">{data.founder.title}</span>
+                      <span className="text-xs text-sky-300 font-medium block mt-0.5">{data.founder.title}</span>
                     </div>
                     <span className="text-[10px] text-slate-300 bg-slate-900/90 px-3 py-1 rounded-full border border-slate-700/80 font-mono">
                       ✓ Executive Profile
@@ -193,7 +193,7 @@ export const AboutView: React.FC = () => {
 
               {/* Verified Social Channels */}
               <div className="bg-[#07101E] rounded-lg p-4 border border-slate-800 space-y-3">
-                <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-sky-400 uppercase tracking-wider block">
                   Connect Directly
                 </span>
                 <div className="space-y-2 text-xs">
@@ -272,7 +272,7 @@ export const AboutView: React.FC = () => {
                       key={idx}
                       className="flex items-center gap-2 p-2.5 rounded bg-slate-900/80 border border-slate-800 text-xs text-slate-200"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
                       <span>{area}</span>
                     </div>
                   ))}
@@ -281,7 +281,7 @@ export const AboutView: React.FC = () => {
 
               {/* Selected Projects under Isaiah's leadership */}
               <div className="pt-4 border-t border-slate-800 space-y-3">
-                <h3 className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-sky-400 uppercase tracking-wider">
                   Selected Initiatives & Platforms
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -306,7 +306,7 @@ export const AboutView: React.FC = () => {
       {/* 5. Target Audience */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-          <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
+          <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider">
             Who We Serve
           </span>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
@@ -319,9 +319,9 @@ export const AboutView: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {targetAudiences.map((aud, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg border border-slate-200 space-y-2 hover:border-amber-400 transition-colors">
+            <div key={index} className="bg-white p-6 rounded-lg border border-slate-200 space-y-2 hover:border-sky-400 transition-colors">
               <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-amber-500" />
+                <Users className="w-4 h-4 text-sky-500" />
                 <h3 className="text-sm font-bold text-slate-900">{aud.title}</h3>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -336,7 +336,7 @@ export const AboutView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-100 rounded-xl p-8 sm:p-10 border border-slate-200">
           <div className="max-w-2xl mb-8 space-y-1">
-            <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider block">
               Ethical Standards
             </span>
             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">

@@ -77,7 +77,7 @@ export const ContactView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-12 border border-slate-800 shadow-xl">
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider block">
               Direct Communication Desk
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
@@ -99,7 +99,7 @@ export const ContactView: React.FC = () => {
             
             <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
               <div>
-                <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">
+                <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider block">
                   Official Registry Details
                 </span>
                 <h2 className="text-xl font-bold text-slate-900 mt-0.5">
@@ -109,12 +109,12 @@ export const ContactView: React.FC = () => {
 
               <div className="space-y-4 text-xs sm:text-sm text-slate-700">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
                     <span className="text-slate-400 text-xs block">Telephone Support</span>
-                    <a href={`tel:${data.settings.contactDetails.phone}`} className="font-semibold text-slate-900 hover:text-amber-600">
+                    <a href={`tel:${data.settings.contactDetails.phone}`} className="font-semibold text-slate-900 hover:text-sky-600">
                       {data.settings.contactDetails.phone}
                     </a>
                   </div>
@@ -143,7 +143,7 @@ export const ContactView: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-slate-400 text-xs block">Official Email</span>
-                    <a href={`mailto:${data.settings.contactDetails.email}`} className="font-semibold text-slate-900 hover:text-amber-600">
+                    <a href={`mailto:${data.settings.contactDetails.email}`} className="font-semibold text-slate-900 hover:text-sky-600">
                       {data.settings.contactDetails.email}
                     </a>
                   </div>
@@ -162,7 +162,7 @@ export const ContactView: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
@@ -238,7 +238,7 @@ export const ContactView: React.FC = () => {
           {/* Right Column: Functional Contact Form */}
           <div className="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-6 sm:p-10 shadow-xs space-y-6">
             <div>
-              <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-sky-600 uppercase tracking-wider block">
                 Reach Out Online
               </span>
               <h2 className="text-2xl font-bold text-slate-900 mt-0.5">
@@ -266,7 +266,7 @@ export const ContactView: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Your Name <span className="text-amber-600">*</span>
+                    Your Name <span className="text-sky-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -274,13 +274,13 @@ export const ContactView: React.FC = () => {
                     placeholder="e.g. Chukwuma Eze"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Phone / WhatsApp Number <span className="text-amber-600">*</span>
+                    Phone / WhatsApp Number <span className="text-sky-600">*</span>
                   </label>
                   <input
                     type="tel"
@@ -288,7 +288,7 @@ export const ContactView: React.FC = () => {
                     placeholder="e.g. +234 803 000 0000"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
               </div>
@@ -303,7 +303,7 @@ export const ContactView: React.FC = () => {
                     placeholder="e.g. user@domain.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
 
@@ -316,14 +316,14 @@ export const ContactView: React.FC = () => {
                     placeholder="e.g. School Portal Partnership"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Your Message <span className="text-amber-600">*</span>
+                  Your Message <span className="text-sky-600">*</span>
                 </label>
                 <textarea
                   required
@@ -331,7 +331,7 @@ export const ContactView: React.FC = () => {
                   placeholder="Type your message here..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 resize-y"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 resize-y"
                 />
               </div>
 
@@ -352,7 +352,7 @@ export const ContactView: React.FC = () => {
                   disabled={submitting}
                   className="w-full py-3 px-6 bg-[#0B1B3D] hover:bg-slate-800 text-white font-bold text-xs sm:text-sm rounded-md transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4 text-amber-400" />
+                  <Send className="w-4 h-4 text-sky-400" />
                   <span>{submitting ? 'Transmitting to Admin, Email & WhatsApp...' : 'Transmit Message to MNX'}</span>
                 </button>
               </div>
@@ -365,7 +365,7 @@ export const ContactView: React.FC = () => {
                   setActiveTab('consultancy');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="text-amber-700 hover:text-amber-800 font-semibold inline-flex items-center gap-1 cursor-pointer"
+                className="text-sky-700 hover:text-sky-800 font-semibold inline-flex items-center gap-1 cursor-pointer"
               >
                 <span>Use Consultancy Intake Form</span>
                 <ArrowRight className="w-3.5 h-3.5" />

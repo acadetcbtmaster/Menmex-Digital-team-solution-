@@ -14,20 +14,15 @@
   }
 }
 
-/* Custom corporate accents for MNX DIGITAL TEAM SOLUTIONS */
+/* Custom corporate accents for MNX DIGITAL TEAM SOLUTIONS (White, Sky Blue & Navy Blue) */
 :root {
   --mnx-navy-dark: #07101E;
   --mnx-navy: #0B1B3D;
   --mnx-navy-light: #162B5E;
-  --mnx-gold: #C59B27;
-  --mnx-gold-light: #E0BA4E;
-  --mnx-gold-subtle: #FDF8ED;
-  --menmex-navy-dark: #07101E;
-  --menmex-navy: #0B1B3D;
-  --menmex-navy-light: #162B5E;
-  --menmex-gold: #C59B27;
-  --menmex-gold-light: #E0BA4E;
-  --menmex-gold-subtle: #FDF8ED;
+  --mnx-sky: #0284C7;
+  --mnx-sky-light: #38BDF8;
+  --mnx-sky-subtle: #F0F9FF;
+  --mnx-white: #FFFFFF;
 }
 
 .text-balance {

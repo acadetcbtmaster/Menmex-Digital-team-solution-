@@ -34,7 +34,7 @@ export const ProjectsView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-12 border border-slate-800 shadow-xl">
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider block">
               Digital Engineering & Platforms
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
@@ -56,7 +56,7 @@ export const ProjectsView: React.FC = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-[#0B1B3D] text-amber-300 shadow-xs'
+                  ? 'bg-[#0B1B3D] text-sky-300 shadow-xs'
                   : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
               }`}
             >
@@ -72,7 +72,7 @@ export const ProjectsView: React.FC = () => {
           {filteredProjects.map((project) => (
             <div 
               key={project.id}
-              className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-amber-400 hover:shadow-lg transition-all flex flex-col justify-between"
+              className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-sky-400 hover:shadow-lg transition-all flex flex-col justify-between"
             >
               <div>
                 {/* Project Image Frame or Tech Platform Banner */}
@@ -87,10 +87,10 @@ export const ProjectsView: React.FC = () => {
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-[#0B1B3D] via-[#0F224D] to-[#162D63] p-6 flex flex-col justify-between text-white">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider bg-amber-400/10 px-3 py-1 rounded-md border border-amber-400/20">
+                        <span className="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider bg-sky-500/10 px-3 py-1 rounded-md border border-sky-400/20">
                           {project.category}
                         </span>
-                        <Code className="w-5 h-5 text-amber-400" />
+                        <Code className="w-5 h-5 text-sky-400" />
                       </div>
                       <div className="space-y-1.5">
                         <span className="text-base sm:text-lg font-bold text-white block">
@@ -113,7 +113,7 @@ export const ProjectsView: React.FC = () => {
 
                 <div className="p-6 sm:p-8 space-y-4">
                   <div>
-                    <span className="text-[11px] font-bold text-amber-600 uppercase tracking-wider block">
+                    <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
                       {project.category}
                     </span>
                     <h2 className="text-xl font-bold text-slate-900 mt-1">
@@ -127,8 +127,8 @@ export const ProjectsView: React.FC = () => {
 
                   {/* Impact Metric Box */}
                   {project.impactMetric && (
-                    <div className="p-3.5 rounded-lg bg-amber-50/70 border border-amber-200/70 text-xs text-amber-900 flex items-start gap-2.5">
-                      <TrendingUp className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <div className="p-3.5 rounded-lg bg-sky-50 border border-sky-200/70 text-xs text-sky-950 flex items-start gap-2.5">
+                      <TrendingUp className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
                       <div>
                         <span className="font-bold block">Verified Impact:</span>
                         <span className="text-slate-700">{project.impactMetric}</span>
@@ -180,7 +180,7 @@ export const ProjectsView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-10 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1.5 max-w-2xl">
-            <span className="text-amber-400 text-xs font-semibold uppercase tracking-wider block">
+            <span className="text-sky-400 text-xs font-semibold uppercase tracking-wider block">
               Custom Engineering & Architecture
             </span>
             <h3 className="text-xl font-bold text-white">
@@ -193,7 +193,7 @@ export const ProjectsView: React.FC = () => {
 
           <button
             onClick={handleCommissionProject}
-            className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold text-xs rounded-md transition-colors cursor-pointer shrink-0"
+            className="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-semibold text-xs rounded-md transition-colors cursor-pointer shrink-0"
           >
             Commission a Platform
           </button>

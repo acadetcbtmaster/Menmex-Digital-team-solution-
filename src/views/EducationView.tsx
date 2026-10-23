@@ -70,7 +70,7 @@ export const EducationView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] text-white rounded-xl p-8 sm:p-12 border border-slate-800 shadow-xl relative overflow-hidden">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 bg-amber-400/10 px-3 py-1 rounded-sm border border-amber-400/20">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-400 bg-sky-500/10 px-3 py-1 rounded-sm border border-sky-400/20">
               <GraduationCap className="w-4 h-4" />
               <span>DEPARTMENT B · EDUCATIONAL INFORMATION CENTRE</span>
             </div>
@@ -84,8 +84,8 @@ export const EducationView: React.FC = () => {
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs">
-              <div className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400" />
+              <div className="flex items-center gap-1.5 text-sky-300">
+                <CheckCircle2 className="w-4 h-4 text-sky-400" />
                 <span>Verified Official Sourcing</span>
               </div>
               <span className="text-slate-600">·</span>
@@ -111,7 +111,7 @@ export const EducationView: React.FC = () => {
                 placeholder="Search publications (e.g., JAMB 2026, UNILAG Post-UTME, O'Level upload, Scholarships)..."
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
               />
               {searchFilter && (
                 <button
@@ -130,10 +130,10 @@ export const EducationView: React.FC = () => {
                   type="checkbox"
                   checked={onlyOfficial}
                   onChange={(e) => setOnlyOfficial(e.target.checked)}
-                  className="rounded text-amber-500 focus:ring-amber-400 w-4 h-4 border-slate-300"
+                  className="rounded text-sky-500 focus:ring-sky-500 w-4 h-4 border-slate-300"
                 />
                 <span className="flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-600" />
                   <span>Verified Official Announcements Only</span>
                 </span>
               </label>
@@ -154,7 +154,7 @@ export const EducationView: React.FC = () => {
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
                       isActive
-                        ? 'bg-[#0B1B3D] text-amber-300 shadow-xs'
+                        ? 'bg-[#0B1B3D] text-sky-300 shadow-xs'
                         : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                     }`}
                   >
@@ -176,7 +176,7 @@ export const EducationView: React.FC = () => {
           </span>
           <button
             onClick={handleRequestAssistance}
-            className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1 cursor-pointer"
+            className="text-xs font-semibold text-sky-700 hover:text-sky-800 flex items-center gap-1 cursor-pointer"
           >
             <span>Need personalized admission guidance?</span>
             <ChevronRight className="w-4 h-4" />
@@ -207,7 +207,7 @@ export const EducationView: React.FC = () => {
               <article 
                 key={article.id}
                 onClick={() => setSelectedArticle(article)}
-                className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-amber-400 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+                className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-sky-400 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
               >
                 <div>
                   {/* Featured Thumbnail */}
@@ -219,7 +219,7 @@ export const EducationView: React.FC = () => {
                         className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 bg-[#0B1B3D]/90 backdrop-blur-xs text-amber-300 text-[10px] font-semibold px-2 py-0.5 rounded">
+                      <div className="absolute top-2.5 left-2.5 bg-[#0B1B3D]/90 backdrop-blur-xs text-sky-300 text-[10px] font-semibold px-2 py-0.5 rounded">
                         {article.category}
                       </div>
                     </div>
@@ -239,7 +239,7 @@ export const EducationView: React.FC = () => {
                       </span>
                     </div>
 
-                    <h2 className="text-base font-bold text-slate-900 group-hover:text-amber-700 transition-colors leading-snug line-clamp-2">
+                    <h2 className="text-base font-bold text-slate-900 group-hover:text-sky-700 transition-colors leading-snug line-clamp-2">
                       {article.title}
                     </h2>
 
@@ -250,8 +250,8 @@ export const EducationView: React.FC = () => {
                     {/* Sourcing Badge */}
                     <div className="pt-1 text-[11px]">
                       {article.isOfficialAnnouncement ? (
-                        <div className="flex items-start gap-1.5 text-amber-800 bg-amber-50/80 p-2 rounded border border-amber-200/60">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
+                        <div className="flex items-start gap-1.5 text-sky-800 bg-sky-50 p-2 rounded border border-sky-200/60">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-sky-600 shrink-0 mt-0.5" />
                           <div className="leading-tight">
                             <span className="font-semibold block">Official Announcement</span>
                             <span className="text-[10px] text-slate-600 truncate block mt-0.5">
@@ -279,7 +279,7 @@ export const EducationView: React.FC = () => {
                     <span>Share</span>
                   </button>
 
-                  <span className="text-amber-700 font-semibold text-xs inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                  <span className="text-sky-700 font-semibold text-xs inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                     <span>Read Full Guide</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </span>
@@ -294,7 +294,7 @@ export const EducationView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0B1B3D] rounded-xl text-white p-8 sm:p-10 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1.5 max-w-2xl">
-            <span className="text-amber-400 text-xs font-semibold uppercase tracking-wider block">
+            <span className="text-sky-400 text-xs font-semibold uppercase tracking-wider block">
               Direct Application & Verification Support
             </span>
             <h3 className="text-xl font-bold text-white">
@@ -307,7 +307,7 @@ export const EducationView: React.FC = () => {
 
           <button
             onClick={handleRequestAssistance}
-            className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold text-xs rounded-md transition-colors cursor-pointer shrink-0"
+            className="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-semibold text-xs rounded-md transition-colors cursor-pointer shrink-0"
           >
             Request Admission Support
           </button>
