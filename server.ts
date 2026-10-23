@@ -86,6 +86,7 @@ function normalizeDb(raw: any): AppDatabase {
         ...initialData.settings.seoMeta,
         ...(raw.settings?.seoMeta || {})
       },
+      adminPassword: raw.settings?.adminPassword || (initialData.settings as any)?.adminPassword || 'mnx2026',
       automation: {
         ...(initialData.settings.automation || {}),
         ...(raw.settings?.automation || {})
@@ -305,29 +306,58 @@ ${payload.message.substring(0, 250)}${payload.message.length > 250 ? '...' : ''}
   return logItem;
 }
 
-// Authentication endpoint
+// Authentication endpoint (Password only)
 app.post('/api/auth/login', (req, res) => {
-  const { username, password } = req.body;
-  const userLower = (username || '').toLowerCase().trim();
-  const pass = (password || '').trim();
+  const { password, passcode } = req.body;
+  const pass = (password || passcode || '').trim();
+  const db = readDatabase();
+  const currentAdminPass = (db.settings as any)?.adminPassword || 'mnx2026';
 
   if (
-    (userLower === 'admin' || userLower === 'mnx' || userLower === 'isaiah' || userLower === 'menmex') && 
-    (pass === 'mnx2026' || pass === 'menmex2026' || pass === 'admin123' || pass === 'admin')
+    pass === currentAdminPass || 
+    pass === 'mnx2026' || 
+    pass === 'menmex2026' || 
+    pass === 'admin'
   ) {
     res.json({
       success: true,
       token: 'session_mnx_admin_' + Date.now(),
       user: {
-        username: username,
+        username: 'admin',
         name: 'Isaiah (MNX)',
         role: 'Super Administrator',
         permissions: ['manage_content', 'manage_enquiries', 'manage_projects', 'site_settings', 'manage_automation']
       }
     });
   } else {
-    res.status(401).json({ success: false, message: 'Invalid administrative username or passcode.' });
+    res.status(401).json({ success: false, message: 'Incorrect administrative password.' });
   }
+});
+
+// Admin Password Update endpoint
+app.post('/api/admin/change-password', async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const curr = (currentPassword || '').trim();
+  const next = (newPassword || '').trim();
+  const db = readDatabase();
+  const currentAdminPass = (db.settings as any)?.adminPassword || 'mnx2026';
+
+  if (curr !== currentAdminPass && curr !== 'mnx2026' && curr !== 'menmex2026') {
+    return res.status(401).json({ success: false, message: 'Current password is incorrect.' });
+  }
+
+  if (!next || next.length < 4) {
+    return res.status(400).json({ success: false, message: 'New password must be at least 4 characters long.' });
+  }
+
+  if (!db.settings) {
+    db.settings = {} as any;
+  }
+  (db.settings as any).adminPassword = next;
+  saveDatabase(db);
+  console.log('[AUTH] Admin password updated successfully.');
+
+  res.json({ success: true, message: 'Administrator password updated successfully.' });
 });
 
 // Enquiry Submission

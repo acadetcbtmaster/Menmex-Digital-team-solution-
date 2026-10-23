@@ -106,22 +106,18 @@ export const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* Zone 3: 1 primary action button + Admin link */}
+          {/* Zone 3: 1 primary action button + Admin link (if logged in) */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-            <button
-              onClick={() => handleNavClick('admin')}
-              title={adminUser ? `Signed in as ${adminUser.name}` : 'Administrative Portal'}
-              className={`p-1.5 sm:p-2 rounded-lg transition-colors cursor-pointer text-xs flex items-center gap-1.5 ${
-                activeTab === 'admin' 
-                  ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40' 
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-              }`}
-            >
-              <ShieldCheck className="w-4 h-4" />
-              <span className="hidden md:inline font-mono text-[11px]">
-                {adminUser ? 'Admin' : 'Portal'}
-              </span>
-            </button>
+            {adminUser && (
+              <button
+                onClick={() => handleNavClick('admin')}
+                title={`Signed in as ${adminUser.name}`}
+                className="px-2 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 text-[11px] font-mono flex items-center gap-1 cursor-pointer"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>Admin</span>
+              </button>
+            )}
 
             <button
               onClick={() => handleNavClick('consultancy')}
@@ -161,15 +157,17 @@ export const Header: React.FC = () => {
               {item.label}
             </button>
           ))}
-          <div className="pt-2 border-t border-slate-800 mt-2 flex items-center justify-between">
-            <button
-              onClick={() => handleNavClick('admin')}
-              className="text-xs text-slate-400 hover:text-sky-400 flex items-center gap-1.5 py-1 px-3"
-            >
-              <ShieldCheck className="w-4 h-4" />
-              <span>Admin Management Dashboard</span>
-            </button>
-          </div>
+          {adminUser && (
+            <div className="pt-2 border-t border-slate-800 mt-2 flex items-center justify-between">
+              <button
+                onClick={() => handleNavClick('admin')}
+                className="text-xs text-sky-400 flex items-center gap-1.5 py-1 px-3"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Admin Dashboard (Active)</span>
+              </button>
+            </div>
+          )}
         </div>
       )}
     </header>

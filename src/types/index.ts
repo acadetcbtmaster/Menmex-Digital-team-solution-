@@ -151,6 +151,7 @@ export interface SiteSettings {
     siteTitle: string;
     metaDescription: string;
   };
+  adminPassword?: string;
   automation?: AutomationSettings;
 }
 

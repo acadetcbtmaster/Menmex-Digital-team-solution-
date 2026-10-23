@@ -23,6 +23,8 @@ import {
   Save,
   RotateCcw,
   Eye,
+  EyeOff,
+  Key,
   AlertCircle,
   Loader2,
   X,
@@ -55,19 +57,27 @@ export const AdminDashboardView: React.FC = () => {
     updateSettings,
     updateAutomationSettings,
     testNotificationDispatch,
+    changeAdminPassword,
     resetToInitialData,
     setSelectedArticle
   } = useApp();
 
-  // Authentication State
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('mnx2026');
+  // Authentication State (Password Only)
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
   const [authenticating, setAuthenticating] = useState(false);
 
+  // Password Modification State
+  const [currentPasswordInput, setCurrentPasswordInput] = useState('');
+  const [newPasswordInput, setNewPasswordInput] = useState('');
+  const [confirmPasswordInput, setConfirmPasswordInput] = useState('');
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [passwordChangeStatus, setPasswordChangeStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; message?: string }>({ type: 'idle' });
+
   // Active Admin Sub-Section
   const [activeAdminTab, setActiveAdminTab] = useState<
-    'enquiries' | 'articles' | 'projects' | 'services' | 'founder' | 'announcements' | 'contacts' | 'settings' | 'automation'
+    'enquiries' | 'articles' | 'projects' | 'services' | 'founder' | 'announcements' | 'contacts' | 'settings' | 'automation' | 'security'
   >('enquiries');
 
   // Enquiries Management State
@@ -153,30 +163,30 @@ export const AdminDashboardView: React.FC = () => {
     }
   }, [data.settings?.automation]);
 
-  // Handle Login
+  // Handle Login (Password Only)
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError('');
     setAuthenticating(true);
-    const res = await adminLogin(username.trim(), password.trim());
+    const res = await adminLogin(password.trim());
     if (!res.success) {
-      setAuthError(res.message || 'Authentication failed.');
+      setAuthError(res.message || 'Incorrect password.');
     }
     setAuthenticating(false);
   };
 
-  // 1. If not authenticated, render Login Gate
+  // 1. If not authenticated, render Clean Password-Only Gate
   if (!adminUser) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
-        <div className="bg-white rounded-xl border border-slate-200 shadow-xl max-w-md w-full overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-xl max-w-sm w-full overflow-hidden">
           <div className="bg-[#0B1B3D] text-white p-6 text-center border-b border-slate-800">
             <div className="w-12 h-12 rounded-lg bg-sky-500/20 border border-sky-400/40 text-sky-400 mx-auto flex items-center justify-center mb-2">
-              <ShieldCheck className="w-6 h-6" />
+              <Lock className="w-6 h-6" />
             </div>
-            <h1 className="text-xl font-bold tracking-tight">MNX DIGITAL TEAM SOLUTIONS Admin Gateway</h1>
+            <h1 className="text-lg font-bold tracking-tight">MNX Management Portal</h1>
             <p className="text-xs text-slate-300 mt-1">
-              Secure Central Content Management & Automated Dispatch Desk
+              Enter password to unlock administrator access
             </p>
           </div>
 
@@ -189,42 +199,46 @@ export const AdminDashboardView: React.FC = () => {
             )}
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Administrator Username
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Administrator Password
               </label>
-              <input
-                type="text"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Access Passcode
-              </label>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
-              />
-            </div>
-
-            <div className="bg-sky-50 border border-sky-200/80 rounded-lg p-3 text-[11px] text-sky-950 leading-relaxed">
-              <span className="font-bold block">Evaluation Credentials:</span>
-              Username: <code className="font-mono bg-white px-1 rounded">admin</code> · Passcode: <code className="font-mono bg-white px-1 rounded">mnx2026</code>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  autoFocus
+                  placeholder="Enter administrator password..."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-3.5 py-2.5 pr-10 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
 
             <button
               type="submit"
-              disabled={authenticating}
-              className="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white shadow-xs font-bold text-xs rounded-md transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              disabled={authenticating || !password}
+              className="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-md transition-all shadow-sm cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              {authenticating ? 'Verifying Credentials...' : 'Authenticate & Open Dashboard'}
+              {authenticating ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Verifying Password...</span>
+                </>
+              ) : (
+                <>
+                  <Lock className="w-3.5 h-3.5" />
+                  <span>Unlock Admin Panel</span>
+                </>
+              )}
             </button>
           </form>
         </div>
@@ -585,6 +599,18 @@ export const AdminDashboardView: React.FC = () => {
             <Bell className="w-3.5 h-3.5 text-sky-400" />
             <span>Automated Alerts (Email & WhatsApp)</span>
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Gateway Active" />
+          </button>
+
+          <button
+            onClick={() => setActiveAdminTab('security')}
+            className={`py-3 px-3.5 font-medium border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
+              activeAdminTab === 'security'
+                ? 'border-sky-400 text-sky-300 font-bold bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Key className="w-3.5 h-3.5 text-sky-400" />
+            <span>Admin Password</span>
           </button>
         </div>
       </div>
@@ -2210,6 +2236,147 @@ export const AdminDashboardView: React.FC = () => {
               )}
             </div>
 
+          </div>
+        )}
+
+        {/* ================= SECTION 10: SECURITY & PASSWORD SETTINGS ================= */}
+        {activeAdminTab === 'security' && (
+          <div className="space-y-6 max-w-2xl">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <Key className="w-5 h-5 text-sky-600" />
+                <span>Admin Password Management</span>
+              </h2>
+              <p className="text-xs text-slate-500 mt-1">
+                Customize your private administrator password. No username is required — only this password will be used to unlock your dashboard.
+              </p>
+            </div>
+
+            {passwordChangeStatus.type === 'success' && (
+              <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>{passwordChangeStatus.message}</span>
+              </div>
+            )}
+
+            {passwordChangeStatus.type === 'error' && (
+              <div className="p-4 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-rose-500 shrink-0" />
+                <span>{passwordChangeStatus.message}</span>
+              </div>
+            )}
+
+            <div className="bg-white rounded-xl border border-slate-200 shadow-xs p-6 space-y-5">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100">
+                Change Your Password
+              </h3>
+
+              <form onSubmit={async (e) => {
+                e.preventDefault();
+                setPasswordChangeStatus({ type: 'loading' });
+                if (newPasswordInput !== confirmPasswordInput) {
+                  setPasswordChangeStatus({ type: 'error', message: 'New password and confirm password do not match.' });
+                  return;
+                }
+                if (newPasswordInput.trim().length < 4) {
+                  setPasswordChangeStatus({ type: 'error', message: 'New password must be at least 4 characters long.' });
+                  return;
+                }
+                const res = await changeAdminPassword(currentPasswordInput, newPasswordInput);
+                if (res.success) {
+                  setPasswordChangeStatus({ type: 'success', message: res.message || 'Administrator password updated successfully!' });
+                  setCurrentPasswordInput('');
+                  setNewPasswordInput('');
+                  setConfirmPasswordInput('');
+                  setTimeout(() => setPasswordChangeStatus({ type: 'idle' }), 5000);
+                } else {
+                  setPasswordChangeStatus({ type: 'error', message: res.message || 'Failed to update password.' });
+                }
+              }} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Current Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    placeholder="Enter current password..."
+                    value={currentPasswordInput}
+                    onChange={(e) => setCurrentPasswordInput(e.target.value)}
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    New Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showNewPassword ? 'text' : 'password'}
+                      required
+                      placeholder="Enter your new password (minimum 4 characters)..."
+                      value={newPasswordInput}
+                      onChange={(e) => setNewPasswordInput(e.target.value)}
+                      className="w-full px-3.5 py-2.5 pr-10 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                      aria-label={showNewPassword ? 'Hide password' : 'Show password'}
+                    >
+                      {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Confirm New Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    placeholder="Re-type new password..."
+                    value={confirmPasswordInput}
+                    onChange={(e) => setConfirmPasswordInput(e.target.value)}
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-sky-500"
+                  />
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={passwordChangeStatus.type === 'loading' || !newPasswordInput}
+                    className="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-md transition-all shadow-xs cursor-pointer flex items-center gap-2 disabled:opacity-50"
+                  >
+                    {passwordChangeStatus.type === 'loading' ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>Updating Password...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Key className="w-3.5 h-3.5" />
+                        <span>Save & Apply New Password</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div className="bg-sky-50 border border-sky-200/80 rounded-xl p-5 text-xs text-sky-950 space-y-2">
+              <span className="font-bold block text-sm text-sky-900">
+                🔒 Security & Discreet Public Access
+              </span>
+              <ul className="list-disc list-inside space-y-1 text-slate-700 leading-relaxed">
+                <li><strong>Password-Only Gate:</strong> You only need to type your secret password to unlock this panel. No username field is requested.</li>
+                <li><strong>Discreet Landing Page Sign:</strong> The public website shows only a quiet small lock icon in the footer copyright area. Normal visitors won't notice it.</li>
+                <li><strong>Cloud Persistence:</strong> Your custom password is saved securely in your PostgreSQL cloud database.</li>
+              </ul>
+            </div>
           </div>
         )}
 

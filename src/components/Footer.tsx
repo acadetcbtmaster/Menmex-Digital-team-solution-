@@ -8,7 +8,8 @@ import {
   ExternalLink, 
   ArrowUpRight,
   MessageCircle,
-  ShieldCheck
+  ShieldCheck,
+  Lock
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -231,13 +232,19 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="mt-6 pt-4 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {currentYear} MNX DIGITAL TEAM SOLUTIONS. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button onClick={() => handleNav('about')} className="hover:text-slate-300 transition-colors cursor-pointer">
               Leadership: Isaiah (MNX DIGITAL TEAM SOLUTIONS)
             </button>
-            <span className="text-slate-700">·</span>
-            <button onClick={() => handleNav('admin')} className="hover:text-sky-400 transition-colors cursor-pointer">
-              Admin Portal
+            <span className="text-slate-800">·</span>
+            {/* Small discreet sign for admin access */}
+            <button 
+              onClick={() => handleNav('admin')} 
+              aria-label="Staff Access"
+              title="Staff Access"
+              className="text-slate-700 hover:text-sky-400 transition-colors cursor-pointer p-1"
+            >
+              <Lock className="w-3 h-3" />
             </button>
           </div>
         </div>

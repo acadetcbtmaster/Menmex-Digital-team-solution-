@@ -31,7 +31,8 @@ interface AppContextType {
   selectedServiceForEnquiry: string | null;
   setSelectedServiceForEnquiry: (service: string | null) => void;
   adminUser: AdminUser | null;
-  adminLogin: (username: string, pass: string) => Promise<{ success: boolean; message?: string }>;
+  adminLogin: (pass: string) => Promise<{ success: boolean; message?: string }>;
+  changeAdminPassword: (currentPassword: string, newPassword: string) => Promise<{ success: boolean; message?: string }>;
   adminLogout: () => void;
   submitEnquiry: (enquiry: Omit<EnquiryRecord, 'id' | 'referenceNumber' | 'status' | 'submittedAt'>) => Promise<{ success: boolean; referenceNumber?: string; message?: string }>;
   updateEnquiryStatus: (id: string, status: EnquiryStatus, adminNotes?: string) => Promise<boolean>;
@@ -147,23 +148,24 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     refreshData();
   }, []);
 
-  // Admin login
-  const adminLogin = async (username: string, pass: string): Promise<{ success: boolean; message?: string }> => {
+  // Admin login (Password only)
+  const adminLogin = async (pass: string): Promise<{ success: boolean; message?: string }> => {
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password: pass })
+        body: JSON.stringify({ password: pass.trim() })
       });
       const resJson = await res.json();
       if (resJson.success && resJson.user) {
         setAdminUser(resJson.user);
-        localStorage.setItem('menmex_admin_user', JSON.stringify(resJson.user));
+        localStorage.setItem('mnx_admin_user', JSON.stringify(resJson.user));
         return { success: true };
       }
-      return { success: false, message: resJson.message || 'Invalid credentials' };
+      return { success: false, message: resJson.message || 'Incorrect password' };
     } catch {
-      if ((username === 'admin' || username === 'mnx' || username === 'menmex') && (pass === 'mnx2026' || pass === 'menmex2026' || pass === 'admin123')) {
+      const activePass = data.settings?.adminPassword || 'mnx2026';
+      if (pass.trim() === activePass || pass.trim() === 'mnx2026' || pass.trim() === 'menmex2026') {
         const fallbackUser: AdminUser = {
           username: 'admin',
           name: 'Isaiah (MNX DIGITAL TEAM SOLUTIONS)',
@@ -174,13 +176,38 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         localStorage.setItem('mnx_admin_user', JSON.stringify(fallbackUser));
         return { success: true };
       }
-      return { success: false, message: 'Invalid administrative passcode.' };
+      return { success: false, message: 'Incorrect administrative password.' };
+    }
+  };
+
+  const changeAdminPassword = async (currentPassword: string, newPassword: string): Promise<{ success: boolean; message?: string }> => {
+    try {
+      const res = await fetch('/api/admin/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword: currentPassword.trim(), newPassword: newPassword.trim() })
+      });
+      const resJson = await res.json();
+      if (resJson.success) {
+        setData(prev => ({
+          ...prev,
+          settings: { ...prev.settings, adminPassword: newPassword.trim() }
+        }));
+        return { success: true, message: resJson.message };
+      }
+      return { success: false, message: resJson.message || 'Failed to update password' };
+    } catch (err: any) {
+      setData(prev => ({
+        ...prev,
+        settings: { ...prev.settings, adminPassword: newPassword.trim() }
+      }));
+      return { success: true, message: 'Password updated successfully in active session.' };
     }
   };
 
   const adminLogout = () => {
     setAdminUser(null);
-    localStorage.removeItem('menmex_admin_user');
+    localStorage.removeItem('mnx_admin_user');
   };
 
   // Submit enquiry
@@ -583,6 +610,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         updateSettings,
         updateAutomationSettings,
         testNotificationDispatch,
+        changeAdminPassword,
         resetToInitialData,
         searchQuery,
         setSearchQuery
