@@ -33,37 +33,72 @@ export const HomeView: React.FC = () => {
 
   const latestArticles = data.articles.slice(0, 3);
 
-  // 4 Core Highlight Pillars (Simplified & High-Impact)
-  const corePillars = [
-    {
-      code: 'A',
-      title: 'Online Consultancy',
-      tagline: 'Expert guidance for admissions, careers & enterprise workflows.',
-      icon: MessageSquare,
-      serviceName: 'Online Consultancy'
-    },
-    {
-      code: 'B',
-      title: 'Educational Information',
-      tagline: 'Verified JAMB, Post-UTME, scholarships & screening alerts.',
-      icon: GraduationCap,
-      serviceName: 'Educational Information'
-    },
-    {
-      code: 'D',
-      title: 'Website & Software Dev',
-      tagline: 'Modern, high-performance web applications, CBT portals & tools.',
-      icon: Code,
-      serviceName: 'Website & Software Development'
-    },
-    {
-      code: 'C',
-      title: 'Registration & Solutions',
-      tagline: 'Accredited portal processing, digital marketing & business growth.',
-      icon: FileCheck,
-      serviceName: 'Online Registration Services'
+  // Department icon resolver helper
+  const getDepartmentIcon = (code: string) => {
+    switch (code) {
+      case 'A': return MessageSquare;
+      case 'B': return GraduationCap;
+      case 'C': return FileCheck;
+      case 'D': return Code;
+      case 'E': return ShieldCheck;
+      case 'F': return TrendingUp;
+      default: return Sparkles;
     }
-  ];
+  };
+
+  // 4 Featured Departments directly from live data.services (updates from admin immediately reflect)
+  const featuredServices = (data.services && data.services.length > 0)
+    ? data.services.slice(0, 4)
+    : [
+        {
+          id: 'svc-1',
+          departmentCode: 'A' as const,
+          title: 'Online Consultancy',
+          tagline: 'Expert guidance for admissions, careers & enterprise workflows.',
+          description: 'Direct strategic advisory for students and businesses.',
+          categoryName: 'Consultancy',
+          features: [],
+          targetClients: [],
+          iconName: 'MessageSquare',
+          isActive: true
+        },
+        {
+          id: 'svc-2',
+          departmentCode: 'B' as const,
+          title: 'Educational Information',
+          tagline: 'Verified JAMB, Post-UTME, scholarships & screening alerts.',
+          description: 'Authentic updates directly from regulatory boards.',
+          categoryName: 'Education',
+          features: [],
+          targetClients: [],
+          iconName: 'GraduationCap',
+          isActive: true
+        },
+        {
+          id: 'svc-3',
+          departmentCode: 'C' as const,
+          title: 'Registration & Solutions',
+          tagline: 'Accredited portal processing, digital marketing & business growth.',
+          description: 'End-to-end portal and corporate filing assistance.',
+          categoryName: 'Registration',
+          features: [],
+          targetClients: [],
+          iconName: 'FileCheck',
+          isActive: true
+        },
+        {
+          id: 'svc-4',
+          departmentCode: 'D' as const,
+          title: 'Website & Software Dev',
+          tagline: 'Modern, high-performance web applications, CBT portals & tools.',
+          description: 'Full-stack software engineering and responsive web designs.',
+          categoryName: 'Software',
+          features: [],
+          targetClients: [],
+          iconName: 'Code',
+          isActive: true
+        }
+      ];
 
   return (
     <div className="bg-white text-slate-900">
@@ -81,61 +116,91 @@ export const HomeView: React.FC = () => {
         />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            {/* Unique Bold Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-bold uppercase tracking-wider">
-              <ShieldCheck className="w-4 h-4 text-sky-400" />
-              <span>{data?.settings?.hero?.badgeText || 'MNX DIGITAL TEAM SOLUTIONS'}</span>
+            <div className={`space-y-6 ${data?.settings?.hero?.heroImage ? 'lg:col-span-7' : 'lg:col-span-12 max-w-3xl'}`}>
+              {/* Unique Bold Status Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-bold uppercase tracking-wider">
+                <ShieldCheck className="w-4 h-4 text-sky-400" />
+                <span>{data?.settings?.hero?.badgeText || 'MNX DIGITAL TEAM SOLUTIONS'}</span>
+              </div>
+
+              {/* Bold Headline (Reflects Admin changes immediately) */}
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
+                {data?.settings?.hero?.headline ? (
+                  data.settings.hero.headline
+                ) : (
+                  <>
+                    Simplifying Digital Processes.{' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-300 to-white">
+                      Connecting People to Opportunities.
+                    </span>
+                  </>
+                )}
+              </h1>
+
+              {/* Sub-headline / Description */}
+              <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
+                {data?.settings?.hero?.subheadline || data?.settings?.hero?.description || 'Professional digital services, verified academic admissions guidance, and bespoke technology engineering for individuals, students, and businesses.'}
+              </p>
+
+              {/* Clean, Bold Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+                <button
+                  onClick={() => handleConsult()}
+                  className="px-7 py-3.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm rounded-lg transition-all shadow-lg hover:shadow-sky-500/25 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>Request Consultation</span>
+                </button>
+
+                <button
+                  onClick={() => handleNavigate('services')}
+                  className="px-6 py-3.5 bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 hover:text-white border border-slate-700 font-bold text-sm rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Explore {data?.services?.length || 8} Departments</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* 4 Core Impact Metrics with Live Website Views */}
+              <div className="pt-8 border-t border-slate-800/90 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
+                <div>
+                  <span className="block text-2xl sm:text-3xl font-black text-sky-400 font-mono">
+                    {(data?.settings?.websiteViews ?? 1428).toLocaleString()}+
+                  </span>
+                  <span className="text-xs text-slate-400 font-medium">Website Views</span>
+                </div>
+                <div>
+                  <span className="block text-2xl sm:text-3xl font-black text-white font-mono">
+                    {data?.services?.length || 8}
+                  </span>
+                  <span className="text-xs text-slate-400 font-medium">Departments</span>
+                </div>
+                <div>
+                  <span className="block text-2xl sm:text-3xl font-black text-white">100%</span>
+                  <span className="text-xs text-slate-400 font-medium">Verified Info</span>
+                </div>
+                <div>
+                  <span className="block text-2xl sm:text-3xl font-black text-sky-300">Fast</span>
+                  <span className="text-xs text-slate-400 font-medium">Response</span>
+                </div>
+              </div>
             </div>
 
-            {/* Bold Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
-              Simplifying Digital Processes.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-300 to-white">
-                Connecting People to Opportunities.
-              </span>
-            </h1>
-
-            {/* Sub-headline / Description */}
-            <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
-              {data?.settings?.hero?.subheadline || 'Professional digital services, verified academic admissions guidance, and bespoke technology engineering for individuals, students, and businesses.'}
-            </p>
-
-            {/* Clean, Bold Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
-              <button
-                onClick={() => handleConsult()}
-                className="px-7 py-3.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm rounded-lg transition-all shadow-lg hover:shadow-sky-500/25 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Request Consultation</span>
-              </button>
-
-              <button
-                onClick={() => handleNavigate('services')}
-                className="px-6 py-3.5 bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 hover:text-white border border-slate-700 font-bold text-sm rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Explore 8 Departments</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* 3 Core Impact Metrics */}
-            <div className="pt-8 border-t border-slate-800/90 grid grid-cols-3 gap-4 max-w-xl">
-              <div>
-                <span className="block text-2xl sm:text-3xl font-black text-sky-400">8</span>
-                <span className="text-xs text-slate-400 font-medium">Business Departments</span>
+            {/* Optional Hero Banner Image from Admin Settings */}
+            {data?.settings?.hero?.heroImage && (
+              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 max-w-md w-full">
+                  <img
+                    src={data.settings.hero.heroImage}
+                    alt="MNX Digital Hero"
+                    className="w-full h-auto object-cover max-h-[380px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B192C] via-transparent to-transparent opacity-60 pointer-events-none" />
+                </div>
               </div>
-              <div>
-                <span className="block text-2xl sm:text-3xl font-black text-white">100%</span>
-                <span className="text-xs text-slate-400 font-medium">Verified Information</span>
-              </div>
-              <div>
-                <span className="block text-2xl sm:text-3xl font-black text-sky-300">Fast</span>
-                <span className="text-xs text-slate-400 font-medium">Advisory Response</span>
-              </div>
-            </div>
+            )}
 
           </div>
         </div>
@@ -156,18 +221,18 @@ export const HomeView: React.FC = () => {
             onClick={() => handleNavigate('services')}
             className="text-sm font-bold text-sky-600 hover:text-sky-700 inline-flex items-center gap-1.5 transition-colors cursor-pointer self-start md:self-auto"
           >
-            <span>View All Departments</span>
+            <span>View All {data?.services?.length || 8} Departments</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* 4 Crisp, Bold Pillar Cards */}
+        {/* 4 Crisp, Bold Dynamic Pillar Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {corePillars.map((pillar) => {
-            const IconComponent = pillar.icon;
+          {featuredServices.map((service) => {
+            const IconComponent = getDepartmentIcon(service.departmentCode);
             return (
               <div 
-                key={pillar.code}
+                key={service.id || service.departmentCode}
                 className="bg-white rounded-xl border border-slate-200 p-6 flex flex-col justify-between hover:border-sky-500 hover:shadow-lg transition-all group"
               >
                 <div className="space-y-4">
@@ -177,20 +242,20 @@ export const HomeView: React.FC = () => {
 
                   <div>
                     <span className="text-[11px] font-mono font-bold text-sky-600 uppercase tracking-wider block mb-1">
-                      Dept {pillar.code}
+                      Dept {service.departmentCode}
                     </span>
                     <h3 className="text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
-                      {pillar.title}
+                      {service.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                      {pillar.tagline}
+                      {service.tagline || service.description}
                     </p>
                   </div>
                 </div>
 
                 <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
                   <button
-                    onClick={() => handleConsult(pillar.serviceName)}
+                    onClick={() => handleConsult(service.title)}
                     className="text-xs font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 cursor-pointer"
                   >
                     <span>Request Service</span>

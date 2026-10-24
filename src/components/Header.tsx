@@ -4,7 +4,8 @@ import {
   Menu, 
   X, 
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Eye
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
@@ -30,25 +31,65 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-[#0B1B3D] border-b border-slate-800 text-white shadow-md">
-      {/* Announcement Bar */}
-      {data?.settings?.announcementBanner?.enabled && (
-        <div className="bg-[#07101E] border-b border-slate-800/80 px-3 sm:px-4 py-1.5 text-xs text-slate-300 w-full overflow-hidden">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
-            <div className="flex items-center gap-2 overflow-hidden truncate min-w-0 flex-1">
-              <span className="text-sky-400 font-semibold uppercase tracking-wider text-[10px] shrink-0">Official Bulletin</span>
-              <span className="text-slate-500 shrink-0">·</span>
-              <span className="truncate text-[11px] sm:text-xs text-slate-300 min-w-0">{data?.settings?.announcementBanner?.text}</span>
-            </div>
-            <button
-              onClick={() => handleNavClick('education')}
-              className="text-sky-400 hover:text-sky-300 text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 flex items-center gap-0.5 cursor-pointer ml-1"
-            >
-              <span>Updates</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
+      {/* Top Banner with Official Bulletin & Website Views Counter */}
+      <div className="bg-[#060D1A] border-b border-slate-800/80 px-3 sm:px-4 py-1.5 text-xs text-slate-300 w-full overflow-hidden">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 min-w-0">
+          
+          {/* Left: Official Bulletin / Welcome */}
+          <div className="flex items-center gap-2 overflow-hidden truncate min-w-0 flex-1">
+            {data?.settings?.announcementBanner?.enabled ? (
+              <>
+                <span className="text-sky-400 font-semibold uppercase tracking-wider text-[10px] shrink-0 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-400/20">
+                  Bulletin
+                </span>
+                <span className="text-slate-500 shrink-0">·</span>
+                <span className="truncate text-[11px] sm:text-xs text-slate-300 min-w-0">
+                  {data?.settings?.announcementBanner?.text}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-sky-400 font-semibold uppercase tracking-wider text-[10px] shrink-0 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-400/20">
+                  Official Portal
+                </span>
+                <span className="text-slate-500 shrink-0">·</span>
+                <span className="truncate text-[11px] sm:text-xs text-slate-300 min-w-0">
+                  {data?.settings?.brandSlogan || 'Professional Digital & Educational Solutions'}
+                </span>
+              </>
+            )}
           </div>
+
+          {/* Right: Live Website Views Counter */}
+          <div className="flex items-center gap-2 shrink-0">
+            <div 
+              title="Total Live Website Page Views"
+              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[11px] text-slate-200 shadow-xs"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <Eye className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <span className="font-extrabold text-white font-mono tracking-tight">
+                {(data?.settings?.websiteViews ?? 1428).toLocaleString()}
+              </span>
+              <span className="text-[10px] text-slate-400 hidden sm:inline font-medium">Views</span>
+            </div>
+
+            {data?.settings?.announcementBanner?.enabled && (
+              <button
+                onClick={() => handleNavClick('education')}
+                className="text-sky-400 hover:text-sky-300 text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 flex items-center gap-0.5 cursor-pointer ml-1"
+              >
+                <span>Updates</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+
         </div>
-      )}
+      </div>
 
       {/* Top Bar 3-Zone Contract */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">

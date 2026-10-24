@@ -117,6 +117,20 @@ export const AdminDashboardView: React.FC = () => {
     impactMetric: ''
   });
 
+  // Service Modal State
+  const [serviceModalOpen, setServiceModalOpen] = useState(false);
+  const [editingServiceId, setEditingServiceId] = useState<string | null>(null);
+  const [serviceForm, setServiceForm] = useState<Partial<ServiceItem>>({
+    title: '',
+    tagline: '',
+    description: '',
+    categoryName: '',
+    isActive: true,
+    features: []
+  });
+  const [featuresInput, setFeaturesInput] = useState('');
+  const [serviceSavedMessage, setServiceSavedMessage] = useState('');
+
   // Founder Profile State
   const [founderForm, setFounderForm] = useState(data.founder);
   const [founderSaved, setFounderSaved] = useState(false);
@@ -345,6 +359,46 @@ export const AdminDashboardView: React.FC = () => {
       impactMetric: proj.impactMetric
     });
     setProjectModalOpen(true);
+  };
+
+  // Service Editing Handlers
+  const handleEditService = (svc: ServiceItem) => {
+    setEditingServiceId(svc.id);
+    setServiceForm({
+      title: svc.title,
+      tagline: svc.tagline,
+      description: svc.description,
+      categoryName: svc.categoryName,
+      isActive: svc.isActive,
+      features: [...svc.features]
+    });
+    setFeaturesInput(svc.features.join('\n'));
+    setServiceModalOpen(true);
+  };
+
+  const handleSaveService = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingServiceId || !serviceForm.title) return;
+    setIsSaving(true);
+    try {
+      const parsedFeatures = featuresInput
+        .split('\n')
+        .map(f => f.trim())
+        .filter(Boolean);
+      await updateService(editingServiceId, {
+        ...serviceForm,
+        features: parsedFeatures
+      });
+      const msg = `Successfully saved! Department "${serviceForm.title}" is updated and live on the front page.`;
+      setServiceSavedMessage(msg);
+      setGlobalSuccessMessage(msg);
+      setTimeout(() => setServiceSavedMessage(''), 5000);
+      setTimeout(() => setGlobalSuccessMessage(''), 5000);
+      setServiceModalOpen(false);
+      setEditingServiceId(null);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   // Save Founder
@@ -618,6 +672,27 @@ export const AdminDashboardView: React.FC = () => {
       {/* Main Admin Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
+        {/* Global Persistence Success Banner */}
+        {globalSuccessMessage && (
+          <div className="mb-6 p-4 bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-xl flex items-center justify-between gap-3 shadow-xs animate-in fade-in duration-200">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 shrink-0">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs sm:text-sm font-bold text-emerald-900">{globalSuccessMessage}</p>
+                <p className="text-[11px] text-emerald-700">Live on front page & saved permanently to database.</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setGlobalSuccessMessage('')}
+              className="text-emerald-700 hover:text-emerald-950 p-1 cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
         {/* ================= SECTION 1: CONSULTANCY ENQUIRIES ================= */}
         {activeAdminTab === 'enquiries' && (
           <div className="space-y-6">
@@ -1374,31 +1449,153 @@ export const AdminDashboardView: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {data.services.map((svc) => (
-                <div key={svc.id} className="bg-white rounded-xl border border-slate-200 p-6 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-sky-600">
-                      Dept {svc.departmentCode} · {svc.categoryName}
-                    </span>
-                    <span className="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-mono">
-                      {svc.isActive ? 'Active' : 'Disabled'}
-                    </span>
+                <div key={svc.id} className="bg-white rounded-xl border border-slate-200 p-6 space-y-3 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs font-bold text-sky-600">
+                        Dept {svc.departmentCode} · {svc.categoryName}
+                      </span>
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-mono ${svc.isActive ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700'}`}>
+                        {svc.isActive ? 'Active' : 'Disabled'}
+                      </span>
+                    </div>
+
+                    <h3 className="font-bold text-slate-900 text-base">{svc.title}</h3>
+                    <p className="text-xs text-slate-600 italic">"{svc.tagline}"</p>
+                    <p className="text-xs text-slate-700 leading-relaxed">{svc.description}</p>
+
+                    <div className="pt-2">
+                      <span className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Features:</span>
+                      <ul className="text-[11px] text-slate-600 space-y-1">
+                        {svc.features.map((f, i) => (
+                          <li key={i}>• {f}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <h3 className="font-bold text-slate-900 text-base">{svc.title}</h3>
-                  <p className="text-xs text-slate-600 italic">"{svc.tagline}"</p>
-                  <p className="text-xs text-slate-700 leading-relaxed">{svc.description}</p>
-
-                  <div className="pt-2">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Features:</span>
-                    <ul className="text-[11px] text-slate-600 space-y-1">
-                      {svc.features.map((f, i) => (
-                        <li key={i}>• {f}</li>
-                      ))}
-                    </ul>
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[10px] text-slate-400">
+                      Live on front page
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleEditService(svc)}
+                      className="px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-bold rounded-lg border border-sky-200 flex items-center gap-1.5 cursor-pointer transition-colors"
+                    >
+                      <Edit3 className="w-3.5 h-3.5" />
+                      <span>Edit Department</span>
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Edit Service Modal */}
+            {serviceModalOpen && (
+              <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+                <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                    <h3 className="text-base font-bold text-slate-900">
+                      Edit Department / Service
+                    </h3>
+                    <button
+                      onClick={() => setServiceModalOpen(false)}
+                      className="text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  <form onSubmit={handleSaveService} className="space-y-4 pt-4 text-xs">
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Department Title *</label>
+                      <input
+                        type="text"
+                        required
+                        value={serviceForm.title}
+                        onChange={(e) => setServiceForm({ ...serviceForm, title: e.target.value })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Tagline</label>
+                      <input
+                        type="text"
+                        value={serviceForm.tagline}
+                        onChange={(e) => setServiceForm({ ...serviceForm, tagline: e.target.value })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Category Name</label>
+                      <input
+                        type="text"
+                        value={serviceForm.categoryName}
+                        onChange={(e) => setServiceForm({ ...serviceForm, categoryName: e.target.value })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Description</label>
+                      <textarea
+                        rows={3}
+                        value={serviceForm.description}
+                        onChange={(e) => setServiceForm({ ...serviceForm, description: e.target.value })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">
+                        Features / Deliverables (One per line)
+                      </label>
+                      <textarea
+                        rows={4}
+                        placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+                        value={featuresInput}
+                        onChange={(e) => setFeaturesInput(e.target.value)}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-2 pt-1">
+                      <input
+                        type="checkbox"
+                        id="svc-active"
+                        checked={serviceForm.isActive ?? true}
+                        onChange={(e) => setServiceForm({ ...serviceForm, isActive: e.target.checked })}
+                        className="rounded text-sky-600 focus:ring-sky-500"
+                      />
+                      <label htmlFor="svc-active" className="text-xs font-bold text-slate-700 cursor-pointer">
+                        Department Active on Website
+                      </label>
+                    </div>
+
+                    <div className="pt-3 flex justify-end gap-2 border-t border-slate-100">
+                      <button
+                        type="button"
+                        onClick={() => setServiceModalOpen(false)}
+                        className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSaving}
+                        className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shadow-sm"
+                      >
+                        {isSaving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                        <span>{isSaving ? 'Saving...' : 'Save & Publish'}</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -1539,7 +1736,150 @@ export const AdminDashboardView: React.FC = () => {
               </div>
             )}
 
-            <form onSubmit={handleSaveSettings} className="space-y-4 text-xs">
+            <form onSubmit={handleSaveSettings} className="space-y-6 text-xs">
+              
+              {/* LIVE WEBSITE VIEWS MANAGER */}
+              <div className="p-4 sm:p-5 bg-[#060D1A] text-white rounded-xl border border-slate-800 shadow-sm space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
+                      <Eye className="w-4 h-4 text-sky-400" />
+                      <span>Live Website Views Counter</span>
+                    </h3>
+                  </div>
+                  <span className="text-[10px] text-sky-300 font-mono bg-sky-950 px-2 py-0.5 rounded border border-sky-800 self-start sm:self-auto">
+                    Auto-increments on page view & clicks
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  Every time a visitor searches, clicks, and opens the website, this view counter automatically increases, updates the top bar, and sticks permanently to the database. You can also view or calibrate the count below:
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-300 uppercase mb-1">
+                      Current Total Views
+                    </label>
+                    <input
+                      type="number"
+                      min={0}
+                      value={settingsForm.websiteViews ?? 1428}
+                      onChange={(e) => setSettingsForm({
+                        ...settingsForm,
+                        websiteViews: parseInt(e.target.value, 10) || 0
+                      })}
+                      className="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white font-mono font-bold rounded-lg text-sm focus:outline-none focus:border-sky-400"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-300 uppercase mb-1">
+                      Quick View Boost
+                    </label>
+                    <div className="flex items-center gap-1.5 pt-0.5">
+                      <button
+                        type="button"
+                        onClick={() => setSettingsForm({
+                          ...settingsForm,
+                          websiteViews: (settingsForm.websiteViews ?? 1428) + 50
+                        })}
+                        className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded text-[11px] font-semibold border border-slate-700 cursor-pointer"
+                      >
+                        +50 Views
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSettingsForm({
+                          ...settingsForm,
+                          websiteViews: (settingsForm.websiteViews ?? 1428) + 100
+                        })}
+                        className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded text-[11px] font-semibold border border-slate-700 cursor-pointer"
+                      >
+                        +100 Views
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSettingsForm({
+                          ...settingsForm,
+                          websiteViews: (settingsForm.websiteViews ?? 1428) + 500
+                        })}
+                        className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded text-[11px] font-semibold border border-slate-700 cursor-pointer"
+                      >
+                        +500 Views
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* FRONT PAGE HERO SECTION TEXTS */}
+              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                    Front Page Hero Section Texts
+                  </h3>
+                  <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    Front Page Live Sync
+                  </span>
+                </div>
+                
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">
+                    Front Page Status Badge
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="MNX DIGITAL TEAM SOLUTIONS"
+                    value={settingsForm.hero?.badgeText || ''}
+                    onChange={(e) => setSettingsForm({
+                      ...settingsForm,
+                      hero: { ...(settingsForm.hero || {} as any), badgeText: e.target.value }
+                    })}
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">
+                    Main Hero Headline
+                  </label>
+                  <textarea
+                    rows={2}
+                    placeholder="Simplifying Digital Processes. Connecting People to Opportunities."
+                    value={settingsForm.hero?.headline || ''}
+                    onChange={(e) => setSettingsForm({
+                      ...settingsForm,
+                      hero: { ...(settingsForm.hero || {} as any), headline: e.target.value }
+                    })}
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium"
+                  />
+                  <span className="text-[10px] text-slate-400">
+                    Leave blank to show the stylized gradient headline.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">
+                    Hero Sub-headline / Description
+                  </label>
+                  <textarea
+                    rows={2}
+                    placeholder="Professional digital services, verified academic admissions guidance, and bespoke technology engineering for individuals, students, and businesses."
+                    value={settingsForm.hero?.subheadline || ''}
+                    onChange={(e) => setSettingsForm({
+                      ...settingsForm,
+                      hero: { ...(settingsForm.hero || {} as any), subheadline: e.target.value }
+                    })}
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                  />
+                </div>
+              </div>
+
+              {/* BULLETIN TICKER */}
               <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-3">
                 <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-slate-900">
                   <input

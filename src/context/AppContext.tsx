@@ -389,7 +389,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const updatedArticles = data.articles.map(a => a.id === id ? { ...a, ...article } : a);
     const updatedDb = { ...data, articles: updatedArticles };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch(`/api/articles/${id}`, {
@@ -408,7 +408,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const updatedArticles = data.articles.filter(a => a.id !== id);
     const updatedDb = { ...data, articles: updatedArticles };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch(`/api/articles/${id}`, { method: 'DELETE' });
@@ -434,7 +434,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
     const updatedDb = { ...data, projects: [newProj, ...data.projects] };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch('/api/projects', {
@@ -453,7 +453,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const updatedProjects = data.projects.map(p => p.id === id ? { ...p, ...project } : p);
     const updatedDb = { ...data, projects: updatedProjects };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch(`/api/projects/${id}`, {
@@ -472,7 +472,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const updatedProjects = data.projects.filter(p => p.id !== id);
     const updatedDb = { ...data, projects: updatedProjects };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch(`/api/projects/${id}`, { method: 'DELETE' });
@@ -488,7 +488,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const updatedServices = data.services.map(s => s.id === id ? { ...s, ...service } : s);
     const updatedDb = { ...data, services: updatedServices };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch(`/api/services/${id}`, {
@@ -508,7 +508,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const updatedFounder = { ...data.founder, ...founder };
     const updatedDb = { ...data, founder: updatedFounder };
     setData(updatedDb);
-    localStorage.setItem('menmex_db_cache', JSON.stringify(updatedDb));
+    localStorage.setItem('mnx_db_cache', JSON.stringify(updatedDb));
 
     try {
       await fetch('/api/founder', {

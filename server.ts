@@ -436,6 +436,7 @@ app.post('/api/enquiries', async (req, res) => {
 
 // Update Enquiry Status & Notes
 app.patch('/api/enquiries/:id', async (req, res) => {
+  const { id } = req.params;
   const { status, adminNotes } = req.body;
   const db = readDatabase();
 
@@ -507,7 +508,7 @@ app.post('/api/contacts', async (req, res) => {
     db
   );
 
-  saveDatabase(db);
+  await saveDatabase(db);
 
   res.status(201).json({ 
     success: true, 
@@ -536,7 +537,7 @@ app.post('/api/notifications/test', async (req, res) => {
     db
   );
 
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, message: 'Automated test alert dispatched.', log });
 });
 
@@ -547,19 +548,19 @@ app.get('/api/notifications/logs', (_req, res) => {
 });
 
 // Update Automation Settings
-app.put('/api/settings/automation', (req, res) => {
+app.put('/api/settings/automation', async (req, res) => {
   const db = readDatabase();
   const incoming = req.body || {};
   db.settings.automation = {
     ...(db.settings.automation || initialData.settings.automation!),
     ...incoming
   };
-  saveDatabase(db);
+  await saveDatabase(db);
   res.json({ success: true, automation: db.settings.automation });
 });
 
 // Update Contact status
-app.patch('/api/contacts/:id', (req, res) => {
+app.patch('/api/contacts/:id', async (req, res) => {
   const { id } = req.params;
   const { isRead } = req.body;
   const db = readDatabase();
