@@ -54,7 +54,7 @@ export const ContactView: React.FC = () => {
       });
 
       if (res.success) {
-        setSuccessMsg('Your message has been delivered to MNX DIGITAL TEAM SOLUTIONS. Automated alerts have been routed to our admin panel, email, and WhatsApp.');
+        setSuccessMsg('Your message has been delivered to Menmex Digital Solution team network. Automated alerts have been routed to our admin panel, email, and WhatsApp.');
         setName('');
         setEmail('');
         setPhone('');
@@ -81,7 +81,7 @@ export const ContactView: React.FC = () => {
               Direct Communication Desk
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Contact MNX DIGITAL TEAM SOLUTIONS
+              Contact Menmex Digital Solution team network
             </h1>
             <p className="text-slate-300 text-sm leading-relaxed">
               Reach our corporate and educational consultancy desks directly through official channels, WhatsApp chat, email, or by submitting the contact form below.
@@ -127,7 +127,7 @@ export const ContactView: React.FC = () => {
                   <div>
                     <span className="text-slate-400 text-xs block">WhatsApp Advisory Desk</span>
                     <a 
-                      href={`https://wa.me/${data.settings.contactDetails.whatsapp.replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20MNX%20DIGITAL%20TEAM%20SOLUTIONS,%20I%20would%20like%20to%20reach%20your%20consultancy%20desk.`}
+                      href={`https://wa.me/${data.settings.contactDetails.whatsapp.replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20Menmex%20Digital%20Solution%20team%20network,%20I%20would%20like%20to%20reach%20your%20consultancy%20desk.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="font-semibold text-emerald-700 hover:text-emerald-800"
@@ -177,7 +177,7 @@ export const ContactView: React.FC = () => {
               {/* Direct WhatsApp Action Button */}
               <div className="pt-2">
                 <a
-                  href={`https://wa.me/${data.settings.contactDetails.whatsapp.replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20MNX%20DIGITAL%20TEAM%20SOLUTIONS,%20I%20am%20contacting%20you%20from%20your%20official%20website.`}
+                  href={`https://wa.me/${data.settings.contactDetails.whatsapp.replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20Menmex%20Digital%20Solution%20team%20network,%20I%20am%20contacting%20you%20from%20your%20official%20website.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-md transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"

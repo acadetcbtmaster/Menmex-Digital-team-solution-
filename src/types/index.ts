@@ -87,6 +87,12 @@ export interface FounderProfile {
   professionalBackground: string;
   areasOfExpertise: string[];
   founderImage: string;
+  isVerified?: boolean;
+  badgeTitle?: string;
+  googleBusinessVerified?: boolean;
+  googleBusinessName?: string;
+  googleBusinessCategory?: string;
+  googleVerificationText?: string;
   socialLinks: {
     whatsapp: string;
     facebook: string;

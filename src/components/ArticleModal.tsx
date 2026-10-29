@@ -12,6 +12,7 @@ import {
   Tag, 
   MessageCircle 
 } from 'lucide-react';
+import { VerifiedBadge } from './VerifiedBadge.tsx';
 
 export const ArticleModal: React.FC = () => {
   const { selectedArticle, setSelectedArticle, setActiveTab, setSelectedServiceForEnquiry } = useApp();
@@ -99,9 +100,10 @@ export const ArticleModal: React.FC = () => {
 
           {/* Unboxed Metadata without pills */}
           <div className="flex flex-wrap items-center gap-y-1 gap-x-2 text-xs text-slate-500 my-4 pb-4 border-b border-slate-100">
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5 font-medium text-slate-700">
               <User className="w-3.5 h-3.5 text-slate-400" />
               <span>{selectedArticle.author}</span>
+              {selectedArticle.author.includes('Isaiah') && <VerifiedBadge size="xs" />}
             </span>
             <span aria-hidden="true">·</span>
             <span className="flex items-center gap-1">

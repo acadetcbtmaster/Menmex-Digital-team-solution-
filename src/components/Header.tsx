@@ -115,10 +115,10 @@ export const Header: React.FC = () => {
             )}
             <div className="flex flex-col min-w-0">
               <span className="text-sm sm:text-base lg:text-lg font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors truncate">
-                MNX <span className="text-sky-400 font-light">DIGITAL</span>
+                MENMEX <span className="text-sky-400 font-light">DIGITAL</span>
               </span>
               <span className="hidden sm:inline-block text-[9px] sm:text-[10px] tracking-wider text-slate-400 uppercase font-medium truncate">
-                Team Solutions & Consultancy
+                Solution Team Network
               </span>
             </div>
           </div>

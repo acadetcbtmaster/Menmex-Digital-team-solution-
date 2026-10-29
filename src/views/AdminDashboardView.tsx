@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext.tsx';
 import { EducationalArticle, ProjectItem, ServiceItem, EnquiryStatus, EnquiryRecord, AutomationSettings } from '../types/index.ts';
 import { ImageUploader } from '../components/ImageUploader.tsx';
+import { VerifiedBadge, GoogleVerifiedBusinessCard } from '../components/VerifiedBadge.tsx';
 import { 
   ShieldCheck, 
   Lock, 
@@ -451,7 +452,7 @@ export const AdminDashboardView: React.FC = () => {
     setTestingDispatch(true);
     setTestResult(null);
     try {
-      const res = await testNotificationDispatch('Live test alert from MNX DIGITAL TEAM SOLUTIONS automated dispatch engine.');
+      const res = await testNotificationDispatch('Live test alert from Menmex Digital Solution team network automated dispatch engine.');
       setTestResult({
         success: res.success,
         message: res.message || 'Automated multi-channel test alert dispatched successfully.'
@@ -514,9 +515,12 @@ export const AdminDashboardView: React.FC = () => {
                   {adminUser.role}
                 </span>
               </div>
-              <span className="text-xs text-slate-400">
-                Logged in: {adminUser.name} ({adminUser.username})
-              </span>
+              <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                <span>Logged in:</span>
+                <span className="font-semibold text-slate-200">{adminUser.name}</span>
+                <VerifiedBadge size="xs" />
+                <span className="text-slate-500">({adminUser.username})</span>
+              </div>
             </div>
           </div>
 
@@ -1603,20 +1607,122 @@ export const AdminDashboardView: React.FC = () => {
         {activeAdminTab === 'founder' && (
           <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 max-w-3xl space-y-6">
             <div>
-              <h2 className="text-xl font-bold text-slate-900">Founder Profile Editor</h2>
+              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <span>Founder Profile Editor</span>
+                <VerifiedBadge size="sm" />
+              </h2>
               <p className="text-xs text-slate-500">
-                Update Isaiah (MNX DIGITAL TEAM SOLUTIONS)'s biography, title, expertise, and social channels.
+                Update Isaiah (Menmex Digital Solution team network)'s biography, title, expertise, and social channels.
               </p>
+            </div>
+
+            {/* Blue Tick Verification Status & Google Business Card */}
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-gradient-to-r from-[#0B1B3D] via-[#071328] to-[#060D1A] border border-sky-400/40 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-11 h-11 rounded-full bg-sky-500/15 border border-sky-400/50 flex items-center justify-center shrink-0 shadow-inner">
+                    <VerifiedBadge size="lg" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-sm font-bold text-white">{founderForm.name}</span>
+                      <VerifiedBadge size="sm" />
+                      <span className="text-[10px] font-bold text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">
+                        Official Blue Tick Active
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 mt-0.5">
+                      Your profile across the website displays the official blue tick verification mark confirming your identity as Creator & Founder.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Exact Google Business Verification Match (from Google Search) */}
+              <div className="p-4 rounded-xl bg-slate-900 border border-sky-500/30 text-white space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <GoogleVerifiedBusinessCard 
+                      businessName={founderForm.googleBusinessName || "Menmex Digital team solution Network"}
+                      category={founderForm.googleBusinessCategory || "Educational consultant"}
+                      verificationText={founderForm.googleVerificationText || "You manage this Business Profile"}
+                    />
+                  </div>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-500/30 font-semibold">
+                    Google Match Active
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-400">
+                  Matches your verified Google Business Profile (<span className="text-sky-300">"Menmex Digital team solution Network"</span> · Educational consultant) with the official <span className="text-white font-medium">"✓ You manage this Business Profile"</span> blue check badge.
+                </p>
+              </div>
             </div>
 
             {founderSaved && (
               <div className="p-3.5 bg-emerald-50 border border-emerald-300 text-xs text-emerald-900 rounded-lg font-semibold flex items-center gap-2 shadow-xs animate-in fade-in duration-200">
                 <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0" />
-                <span>Successfully saved! Founder profile and executive photo updated.</span>
+                <span>Successfully saved! Founder profile, verification badges, and executive photo updated.</span>
               </div>
             )}
 
             <form onSubmit={handleSaveFounder} className="space-y-4 text-xs">
+              {/* Verification Settings */}
+              <div className="p-3.5 rounded-lg bg-sky-50/60 border border-sky-100 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-sky-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <VerifiedBadge size="xs" />
+                    Verification & Google Profile Settings
+                  </span>
+                  <label className="inline-flex items-center gap-1.5 cursor-pointer">
+                    <input 
+                      type="checkbox"
+                      checked={founderForm.isVerified ?? true}
+                      onChange={(e) => setFounderForm({ ...founderForm, isVerified: e.target.checked })}
+                      className="rounded text-sky-600 focus:ring-sky-500"
+                    />
+                    <span className="text-xs font-bold text-slate-700">Blue Tick Active</span>
+                  </label>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Badge Title</label>
+                    <input
+                      type="text"
+                      value={founderForm.badgeTitle || "Verified Creator & Founder"}
+                      onChange={(e) => setFounderForm({ ...founderForm, badgeTitle: e.target.value })}
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Google Profile Text</label>
+                    <input
+                      type="text"
+                      value={founderForm.googleVerificationText || "You manage this Business Profile"}
+                      onChange={(e) => setFounderForm({ ...founderForm, googleVerificationText: e.target.value })}
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Google Business Name</label>
+                    <input
+                      type="text"
+                      value={founderForm.googleBusinessName || "Menmex Digital team solution Network"}
+                      onChange={(e) => setFounderForm({ ...founderForm, googleBusinessName: e.target.value })}
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Google Business Category</label>
+                    <input
+                      type="text"
+                      value={founderForm.googleBusinessCategory || "Educational consultant"}
+                      onChange={(e) => setFounderForm({ ...founderForm, googleBusinessCategory: e.target.value })}
+                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs"
+                    />
+                  </div>
+                </div>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[10px] font-bold text-slate-700 uppercase mb-1">Name</label>
@@ -1816,6 +1922,89 @@ export const AdminDashboardView: React.FC = () => {
                 </div>
               </div>
 
+              {/* GOOGLE SEARCH FAVICON & LOGO (REPLACES ROUND EARTH) */}
+              <div className="p-4 bg-gradient-to-br from-slate-900 to-[#0B1B3D] text-white rounded-xl border border-sky-500/40 space-y-4 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center">
+                      <Globe className="w-4 h-4 text-sky-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+                        Google Search Favicon & Logo (Round Earth Fix)
+                      </h3>
+                      <p className="text-[11px] text-sky-300">
+                        Controls what logo Google Search displays next to <span className="font-mono">menmexdigital.site</span>
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30 font-semibold font-mono">
+                    Configured & Active
+                  </span>
+                </div>
+
+                {/* Google Search Live Preview Card */}
+                <div className="p-3.5 bg-white text-slate-900 rounded-lg border border-slate-200 shadow-sm space-y-1.5">
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">
+                    Google Search Result Appearance
+                  </span>
+                  
+                  {/* Google Search Result Item */}
+                  <div className="space-y-1 pt-1">
+                    <div className="flex items-center gap-2">
+                      {/* Logo next to URL (Replaces the Round Earth!) */}
+                      <div className="w-6 h-6 rounded-full overflow-hidden bg-white border border-slate-200 p-0.5 shrink-0 flex items-center justify-center shadow-xs">
+                        <img 
+                          src="/logo.png" 
+                          alt="MNX Logo" 
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="flex flex-col text-[11px] leading-tight">
+                        <span className="font-semibold text-slate-900">menmexdigital.site</span>
+                        <span className="text-[10px] text-slate-500 truncate">https://menmexdigital.site</span>
+                      </div>
+                    </div>
+
+                    <h4 className="text-sm font-bold text-blue-700 hover:underline cursor-pointer leading-tight pt-0.5">
+                      Menmex Digital Solution team network
+                    </h4>
+
+                    <p className="text-xs text-slate-600 leading-snug">
+                      Online Consultancy & Advisory. Professional guidance for resolving complex online service and educational challenges. Request Service.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Status & Re-indexing Steps */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1.5">
+                    <span className="text-[11px] font-bold text-sky-300 block">
+                      Why Did Google Show the Round Earth?
+                    </span>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      Google displays the default blue globe ("round earth") whenever a newly created site is missing <code className="text-sky-300 text-[10px]">&lt;link rel="icon"&gt;</code> tags in the HTML header or Googlebot has not re-crawled the icon yet.
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1.5">
+                    <span className="text-[11px] font-bold text-emerald-400 block">
+                      How Google Will Show Your Logo Now
+                    </span>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      We have generated <code className="text-sky-300 text-[10px]">/favicon.ico</code>, <code className="text-sky-300 text-[10px]">/logo.png</code> (high-res 1:1), added Schema.org Organization logo data, and updated <code className="text-sky-300 text-[10px]">robots.txt</code>.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-sky-950/40 border border-sky-500/20 text-[11px] text-slate-300 space-y-1">
+                  <span className="text-white font-semibold block">⚡ Want Google to update it faster?</span>
+                  <p>
+                    Open <strong>Google Search Console</strong> (<a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" className="text-sky-400 underline">search.google.com/search-console</a>), enter <code className="text-sky-300 font-mono">https://menmexdigital.site</code> in the search bar at top, and click <strong>"Request Indexing"</strong>. Googlebot will recrawl the homepage and update the icon in search results.
+                  </p>
+                </div>
+              </div>
+
               {/* FRONT PAGE HERO SECTION TEXTS */}
               <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-3">
                 <div className="flex items-center justify-between">
@@ -1833,7 +2022,7 @@ export const AdminDashboardView: React.FC = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="MNX DIGITAL TEAM SOLUTIONS"
+                    placeholder="Menmex Digital Solution team network"
                     value={settingsForm.hero?.badgeText || ''}
                     onChange={(e) => setSettingsForm({
                       ...settingsForm,

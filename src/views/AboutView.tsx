@@ -13,8 +13,10 @@ import {
   Code,
   GraduationCap,
   Sparkles,
-  Share2
+  Share2,
+  Globe
 } from 'lucide-react';
+import { VerifiedBadge, GoogleVerifiedBusinessCard } from '../components/VerifiedBadge.tsx';
 
 export const AboutView: React.FC = () => {
   const { data, setActiveTab, setSelectedServiceForEnquiry } = useApp();
@@ -56,13 +58,13 @@ export const AboutView: React.FC = () => {
               Corporate Overview & Identity
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              About MNX DIGITAL TEAM SOLUTIONS
+              About Menmex Digital Solution team network
             </h1>
             <p className="text-sky-300/90 text-sm sm:text-base font-medium italic">
               "{data.settings.brandSlogan}"
             </p>
             <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              MNX DIGITAL TEAM SOLUTIONS is a multi-service digital solutions, online consultancy, and information brand operating at the intersection of technology, education, information dissemination, and business development.
+              Menmex Digital Solution team network is a multi-service digital solutions, online consultancy, and information brand operating at the intersection of technology, education, information dissemination, and business development.
             </p>
           </div>
         </div>
@@ -141,14 +143,33 @@ export const AboutView: React.FC = () => {
           <div className="border-b border-slate-800 pb-6 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <span className="text-sky-400 text-xs font-semibold uppercase tracking-wider block">
-                Executive Leadership
+                Executive Leadership & Official Entity
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
-                Founder Profile: {data.founder.name}
-              </h2>
-              <p className="text-sky-300 text-xs font-medium mt-0.5">
-                {data.founder.title}
-              </p>
+              <div className="flex items-center gap-2.5 flex-wrap mt-1">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                  Founder Profile: {data.founder.name}
+                </h2>
+                <VerifiedBadge size="lg" />
+              </div>
+              <div className="flex items-center gap-2.5 flex-wrap mt-1.5">
+                <p className="text-sky-300 text-xs font-medium">
+                  {data.founder.title}
+                </p>
+                <VerifiedBadge 
+                  showLabel 
+                  label={data.founder.badgeTitle || "Verified Creator & Founder"} 
+                  size="xs" 
+                />
+              </div>
+
+              {/* Exact Google Business Profile Verified Badge from Google Search */}
+              <div className="mt-3 flex items-center gap-2 flex-wrap">
+                <GoogleVerifiedBusinessCard 
+                  businessName={data.founder.googleBusinessName || "Menmex Digital team solution Network"}
+                  category={data.founder.googleBusinessCategory || "Educational consultant"}
+                  verificationText={data.founder.googleVerificationText || "You manage this Business Profile"}
+                />
+              </div>
             </div>
 
             <button
@@ -165,29 +186,122 @@ export const AboutView: React.FC = () => {
             <div className="lg:col-span-4 space-y-6">
               <div className="relative mx-auto max-w-xs">
                 {data?.founder?.founderImage ? (
-                  <img
-                    src={data.founder.founderImage}
-                    alt={data?.founder?.name || 'Isaiah (MNX DIGITAL TEAM SOLUTIONS)'}
-                    className="w-full aspect-square rounded-xl object-cover border-2 border-sky-400/50 shadow-2xl"
-                    referrerPolicy="no-referrer"
-                  />
+                  <div className="relative">
+                    <img
+                      src={data.founder.founderImage}
+                      alt={data?.founder?.name || 'Isaiah (MNX DIGITAL TEAM SOLUTIONS)'}
+                      className="w-full aspect-square rounded-xl object-cover border-2 border-sky-400/50 shadow-2xl"
+                      referrerPolicy="no-referrer"
+                    />
+                    {/* Blue Tick Badge over photo */}
+                    <div 
+                      title="Verified Creator & Official Founder"
+                      className="absolute -bottom-2.5 -right-2.5 bg-[#0B1B3D] rounded-full p-1.5 border-2 border-sky-400 shadow-2xl flex items-center justify-center"
+                    >
+                      <VerifiedBadge size="lg" />
+                    </div>
+                  </div>
                 ) : (
-                  <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-[#0F224D] via-[#0B1B3D] to-[#07101E] border-2 border-sky-400/50 shadow-2xl flex flex-col items-center justify-center p-6 text-center space-y-3">
-                    <div className="w-20 h-20 rounded-full bg-sky-500/10 border-2 border-sky-400/60 flex items-center justify-center text-sky-400 text-3xl font-black tracking-tight shadow-inner">
-                      IM
+                  <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-[#0F224D] via-[#0B1B3D] to-[#07101E] border-2 border-sky-400/50 shadow-2xl flex flex-col items-center justify-center p-6 text-center space-y-3 relative">
+                    <div className="relative">
+                      <div className="w-20 h-20 rounded-full bg-sky-500/10 border-2 border-sky-400/60 flex items-center justify-center text-sky-400 text-3xl font-black tracking-tight shadow-inner">
+                        IM
+                      </div>
+                      <div className="absolute -bottom-1.5 -right-1.5 bg-[#0B1B3D] rounded-full p-1 border border-sky-400 shadow-lg">
+                        <VerifiedBadge size="md" />
+                      </div>
                     </div>
                     <div>
-                      <span className="font-bold text-white text-base block">{data.founder.name}</span>
+                      <div className="flex items-center justify-center gap-1.5">
+                        <span className="font-bold text-white text-base block">{data.founder.name}</span>
+                        <VerifiedBadge size="sm" />
+                      </div>
                       <span className="text-xs text-sky-300 font-medium block mt-0.5">{data.founder.title}</span>
                     </div>
-                    <span className="text-[10px] text-slate-300 bg-slate-900/90 px-3 py-1 rounded-full border border-slate-700/80 font-mono">
-                      ✓ Executive Profile
+                    <span className="text-[10px] text-sky-300 bg-sky-950/90 px-3 py-1 rounded-full border border-sky-600/80 font-mono inline-flex items-center gap-1.5 shadow-xs">
+                      <VerifiedBadge size="xs" />
+                      <span className="font-bold tracking-tight">Verified Creator Profile</span>
                     </span>
                   </div>
                 )}
-                <div className="mt-3 text-center">
-                  <span className="text-xs font-bold text-white block">{data.founder.name}</span>
-                  <span className="text-[11px] text-slate-400 block">{data.founder.title}</span>
+                <div className="mt-3.5 text-center">
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span className="text-xs font-bold text-white block">{data.founder.name}</span>
+                    <VerifiedBadge size="sm" />
+                  </div>
+                  <span className="text-[11px] text-slate-400 block mt-0.5">{data.founder.title}</span>
+                </div>
+              </div>
+
+              {/* Google Verified Business Quick Action Row (From Google Search) */}
+              <div className="bg-[#07101E] rounded-xl p-3.5 border border-sky-500/30 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <VerifiedBadge size="xs" />
+                    <span className="text-[11px] font-bold text-sky-200">
+                      Google Business Profile
+                    </span>
+                  </div>
+                  <span className="text-[9px] font-mono text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="text-[10px] text-slate-300">
+                  <span className="font-semibold text-white block">Menmex Digital team solution Network</span>
+                  <span className="text-slate-400">Educational consultant · Managed by Isaiah</span>
+                </div>
+
+                <div className="grid grid-cols-4 gap-1.5 pt-1 text-center">
+                  <a
+                    href="tel:07053157243"
+                    className="p-2 rounded-lg bg-slate-900 hover:bg-sky-950 border border-slate-800 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 flex flex-col items-center justify-center gap-1 transition-all"
+                    title="Call 07053157243"
+                  >
+                    <svg className="w-4 h-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span className="text-[10px] font-medium">Call</span>
+                  </a>
+
+                  <a
+                    href="https://wa.me/2347053157243"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-slate-900 hover:bg-emerald-950/50 border border-slate-800 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-300 flex flex-col items-center justify-center gap-1 transition-all"
+                    title="WhatsApp Desk"
+                  >
+                    <MessageCircle className="w-4 h-4 text-emerald-400" />
+                    <span className="text-[10px] font-medium">WhatsApp</span>
+                  </a>
+
+                  <button
+                    onClick={() => {
+                      if (navigator.share) {
+                        navigator.share({
+                          title: 'Menmex Digital Solution team network',
+                          url: window.location.href,
+                          text: 'Menmex Digital team solution Network - Educational consultant & Digital Services'
+                        }).catch(() => {});
+                      } else {
+                        navigator.clipboard.writeText(window.location.href);
+                      }
+                    }}
+                    className="p-2 rounded-lg bg-slate-900 hover:bg-sky-950 border border-slate-800 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 flex flex-col items-center justify-center gap-1 transition-all cursor-pointer"
+                    title="Share Profile"
+                  >
+                    <Share2 className="w-4 h-4 text-sky-400" />
+                    <span className="text-[10px] font-medium">Share</span>
+                  </button>
+
+                  <a
+                    href="#top"
+                    className="p-2 rounded-lg bg-slate-900 hover:bg-sky-950 border border-slate-800 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 flex flex-col items-center justify-center gap-1 transition-all"
+                    title="Official Website"
+                  >
+                    <Globe className="w-4 h-4 text-sky-400" />
+                    <span className="text-[10px] font-medium">Website</span>
+                  </a>
                 </div>
               </div>
 

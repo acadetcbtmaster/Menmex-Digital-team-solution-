@@ -26,10 +26,10 @@ export const EnquirySuccessModal: React.FC<EnquirySuccessModalProps> = ({
   };
 
   const handleOpenWhatsApp = () => {
-    const rawNum = data?.settings?.contactDetails?.whatsapp || '070531572';
+    const rawNum = data?.settings?.contactDetails?.whatsapp || '07053157243';
     const cleanNum = rawNum.replace(/^0/, '234').replace(/[^0-9]/g, '');
     const text = encodeURIComponent(
-      `Hello MNX DIGITAL TEAM SOLUTIONS,\n\nMy name is ${fullName}. I just submitted an online request regarding *${serviceCategory}*.\n\nMy Reference Number is: *${referenceNumber}*.\n\nPlease advise on next steps.`
+      `Hello Menmex Digital Solution team network,\n\nMy name is ${fullName}. I just submitted an online request regarding *${serviceCategory}*.\n\nMy Reference Number is: *${referenceNumber}*.\n\nPlease advise on next steps.`
     );
     window.open(`https://wa.me/${cleanNum}?text=${text}`, '_blank');
   };

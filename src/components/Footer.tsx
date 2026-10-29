@@ -12,6 +12,7 @@ import {
   Lock
 } from 'lucide-react';
 import { TicketFollowUpPort } from './TicketFollowUpPort.tsx';
+import { VerifiedBadge } from './VerifiedBadge.tsx';
 
 export const Footer: React.FC = () => {
   const { data, setActiveTab } = useApp();
@@ -49,7 +50,7 @@ export const Footer: React.FC = () => {
               Request a Consultation
             </button>
             <a
-              href={`https://wa.me/${(data?.settings?.contactDetails?.whatsapp || '070531572').replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20MNX%20DIGITAL%20TEAM%20SOLUTIONS,%20I%20would%20like%20to%20enquire%20about%20your%20services.`}
+              href={`https://wa.me/${(data?.settings?.contactDetails?.whatsapp || '07053157243').replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20Menmex%20Digital%20Solution%20team%20network,%20I%20would%20like%20to%20enquire%20about%20your%20services.`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-4 py-2.5 text-xs font-medium text-white border border-slate-700 hover:border-sky-400 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer text-center"
@@ -72,7 +73,7 @@ export const Footer: React.FC = () => {
                 <div className="bg-white p-1 rounded-md shadow-xs shrink-0 flex items-center justify-center">
                   <img
                     src={data.settings.logoUrl}
-                    alt={data?.settings?.brandName || 'MNX Logo'}
+                    alt={data?.settings?.brandName || 'Menmex Logo'}
                     className="h-8 w-auto max-w-[120px] object-contain"
                   />
                 </div>
@@ -82,7 +83,7 @@ export const Footer: React.FC = () => {
                 </div>
               )}
               <span className="text-lg font-bold tracking-tight text-white">
-                MNX <span className="text-sky-400 font-light">DIGITAL TEAM SOLUTIONS</span>
+                MENMEX <span className="text-sky-400 font-light">DIGITAL SOLUTION TEAM NETWORK</span>
               </span>
             </div>
             
@@ -216,10 +217,13 @@ export const Footer: React.FC = () => {
               </a>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800/80">
-              <div className="text-[11px] text-slate-500 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-                <span>Verified Educational Advisory</span>
+            <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-1">
+              <div className="text-[11px] text-slate-300 flex items-center gap-1.5 font-semibold">
+                <VerifiedBadge size="xs" />
+                <span>Menmex Digital team solution Network</span>
+              </div>
+              <div className="text-[10px] text-sky-400 flex items-center gap-1 font-mono">
+                <span>✓ You manage this Business Profile</span>
               </div>
             </div>
           </div>
@@ -229,16 +233,21 @@ export const Footer: React.FC = () => {
         {/* Educational Disclaimer */}
         <div className="mt-12 pt-6 border-t border-slate-800/80 text-[11px] text-slate-500 leading-relaxed">
           <p>
-            <strong className="text-slate-400">Educational Notice:</strong> MNX Educational Information Centre disseminates verified educational notifications and guidance. While we strictly verify announcements against primary statutory bulletins (JAMB, National Universities Commission, NBTE, Federal Scholarship Board), institutional regulations are subject to statutory amendments. Official institutional links are provided across publications for direct verification.
+            <strong className="text-slate-400">Educational Notice:</strong> Menmex Educational Information Centre disseminates verified educational notifications and guidance. While we strictly verify announcements against primary statutory bulletins (JAMB, National Universities Commission, NBTE, Federal Scholarship Board), institutional regulations are subject to statutory amendments. Official institutional links are provided across publications for direct verification.
           </p>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-6 pt-4 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {currentYear} MNX DIGITAL TEAM SOLUTIONS. All rights reserved.</p>
+          <p>© {currentYear} Menmex Digital Solution team network. All rights reserved.</p>
           <div className="flex items-center gap-3">
-            <button onClick={() => handleNav('about')} className="hover:text-slate-300 transition-colors cursor-pointer">
-              Leadership: Isaiah (MNX DIGITAL TEAM SOLUTIONS)
+            <button 
+              onClick={() => handleNav('about')} 
+              className="hover:text-slate-300 transition-colors cursor-pointer inline-flex items-center gap-1.5"
+              title="Verified Creator & Founder"
+            >
+              <span>Leadership: {data?.founder?.name || 'Isaiah (Menmex Digital Solution team network)'}</span>
+              <VerifiedBadge size="xs" />
             </button>
             <span className="text-slate-800">·</span>
             {/* Small discreet sign for admin access */}

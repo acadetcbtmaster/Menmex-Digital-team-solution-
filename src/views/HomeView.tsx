@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   TrendingUp
 } from 'lucide-react';
+import { VerifiedBadge, GoogleVerifiedBusinessCard } from '../components/VerifiedBadge.tsx';
 
 export const HomeView: React.FC = () => {
   const { data, setActiveTab, setSelectedArticle, setSelectedServiceForEnquiry } = useApp();
@@ -122,7 +123,7 @@ export const HomeView: React.FC = () => {
               {/* Unique Bold Status Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-bold uppercase tracking-wider">
                 <ShieldCheck className="w-4 h-4 text-sky-400" />
-                <span>{data?.settings?.hero?.badgeText || 'MNX DIGITAL TEAM SOLUTIONS'}</span>
+                <span>{data?.settings?.hero?.badgeText || 'Menmex Digital Solution team network'}</span>
               </div>
 
               {/* Bold Headline (Reflects Admin changes immediately) */}
@@ -351,6 +352,20 @@ export const HomeView: React.FC = () => {
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                 Connect with MNX DIGITAL TEAM SOLUTIONS today. Submit your enquiry for an automated tracking reference code and fast review from our team.
               </p>
+
+              <div className="pt-2 flex items-center gap-3 flex-wrap">
+                <span className="text-xs text-slate-400 font-medium">Official Founder & Management:</span>
+                <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                  <span>{data?.founder?.name || 'Isaiah (MNX DIGITAL TEAM SOLUTIONS)'}</span>
+                  <VerifiedBadge size="sm" />
+                </span>
+                <GoogleVerifiedBusinessCard 
+                  compact 
+                  businessName={data?.founder?.googleBusinessName || "Menmex Digital team solution Network"}
+                  category={data?.founder?.googleBusinessCategory || "Educational consultant"}
+                  verificationText={data?.founder?.googleVerificationText || "You manage this Business Profile"}
+                />
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">

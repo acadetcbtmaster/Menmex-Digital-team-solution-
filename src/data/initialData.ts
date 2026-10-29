@@ -2,20 +2,20 @@ import { AppDatabase } from '../types/index.ts';
 
 export const initialData: AppDatabase = {
   settings: {
-    brandName: "MNX DIGITAL TEAM SOLUTIONS",
+    brandName: "Menmex Digital Solution team network",
     brandSlogan: "Simplifying Digital Processes. Connecting People to Opportunities.",
     brandPositioning: "Digital Solutions | Online Consultancy | Educational Information | Technology | Business Support",
     logoUrl: "/logo.png",
     hero: {
-      badgeText: "OFFICIAL DIGITAL SOLUTIONS & CONSULTANCY",
-      headline: "MNX DIGITAL TEAM SOLUTIONS",
+      badgeText: "OFFICIAL MENMEX DIGITAL TEAM NETWORK",
+      headline: "Menmex Digital Solution team network",
       subheadline: "Your Trusted Partner in Digital Solutions, Online Consultancy and Educational Information.",
       description: "We provide professional digital services, educational information, online consultancy, technology solutions and business support designed to simplify processes and create opportunities.",
       heroImage: ""
     },
     announcementBanner: {
       enabled: true,
-      text: "Official Notice: 2026/2027 JAMB UTME Registration Procedures & Direct Entry Verification Now Active. Contact our MNX consultancy desk for support.",
+      text: "Official Notice: 2026/2027 JAMB UTME Registration Procedures & Direct Entry Verification Now Active. Contact our Menmex consultancy desk for support.",
       link: "#educational-updates"
     },
     contactDetails: {
@@ -26,8 +26,8 @@ export const initialData: AppDatabase = {
       workingHours: "Monday – Saturday: 8:00 AM – 7:00 PM (WAT)"
     },
     seoMeta: {
-      siteTitle: "MNX DIGITAL TEAM SOLUTIONS | Digital Services, Consultancy & Educational Portal",
-      metaDescription: "MNX DIGITAL TEAM SOLUTIONS connects individuals, students, and businesses with reliable digital services, educational information, web development, and online consultancy."
+      siteTitle: "Menmex Digital Solution team network | Digital Services, Consultancy & Educational Portal",
+      metaDescription: "Menmex Digital Solution team network connects individuals, students, and businesses with reliable digital services, educational information, web development, and online consultancy."
     },
     adminPassword: "mnx2026",
     websiteViews: 1428,
@@ -43,11 +43,11 @@ export const initialData: AppDatabase = {
     }
   },
   founder: {
-    name: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
-    title: "Founder & Lead Consultant | MNX DIGITAL TEAM SOLUTIONS",
+    name: "Isaiah (Menmex Digital Solution team network)",
+    title: "Founder & Lead Consultant | Menmex Digital Solution Team Network",
     slogan: "Empowering minds and enterprises through technology, clarity, and dependable digital systems.",
-    shortBio: "Isaiah is the visionary founder and lead consultant at MNX DIGITAL TEAM SOLUTIONS, serving as a dedicated digital solutions consultant, educational information specialist, and web developer.",
-    fullBiography: "Isaiah (widely recognized across digital communities as leader of MNX DIGITAL TEAM SOLUTIONS) established the brand to bridge the critical gap between individuals and the digital tools, educational announcements, and technology-driven opportunities they need. With extensive hands-on expertise spanning educational admissions guidance, web platform development, digital marketing, and social media brand positioning, he leads MNX DIGITAL TEAM SOLUTIONS with a clear commitment to integrity, accuracy, and process simplification. Under his leadership, MNX has grown into a reputable central digital destination trusted by thousands of students, applicants, and growing businesses across Nigeria and beyond.",
+    shortBio: "Isaiah is the visionary founder and lead consultant at Menmex Digital Solution team network, serving as a dedicated digital solutions consultant, educational information specialist, and web developer.",
+    fullBiography: "Isaiah (widely recognized across digital communities as leader of Menmex Digital Solution team network) established the brand to bridge the critical gap between individuals and the digital tools, educational announcements, and technology-driven opportunities they need. With extensive hands-on expertise spanning educational admissions guidance, web platform development, digital marketing, and social media brand positioning, he leads Menmex Digital Solution team network with a clear commitment to integrity, accuracy, and process simplification. Under his leadership, Menmex has grown into a reputable central digital destination trusted by thousands of students, applicants, and growing businesses across Nigeria and beyond.",
     professionalBackground: "Isaiah has actively spearheaded practical digital initiatives including online university admissions advisory, computer-based testing (CBT) training workflows, small business digital transitions, and custom web development. His approach combines hands-on technical execution with direct, approachable client consultancy.",
     areasOfExpertise: [
       "Digital Solutions & Online Consultancy",
@@ -58,6 +58,12 @@ export const initialData: AppDatabase = {
       "Digital Marketing & Brand Positioning"
     ],
     founderImage: "",
+    isVerified: true,
+    badgeTitle: "Verified Creator & Founder",
+    googleBusinessVerified: true,
+    googleBusinessName: "Menmex Digital team solution Network",
+    googleBusinessCategory: "Educational consultant",
+    googleVerificationText: "You manage this Business Profile",
     socialLinks: {
       whatsapp: "https://wa.me/2347053157243",
       facebook: "https://www.facebook.com/share/1DzH6eycuZ/",
@@ -231,7 +237,7 @@ export const initialData: AppDatabase = {
       officialSourceUrl: "https://jamb.gov.ng",
       publishDate: "October 14, 2026",
       readTime: "5 min read",
-      author: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
+      author: "Isaiah (Menmex Digital Solution team network)",
       views: 1420,
       tags: ["JAMB 2026", "UTME", "Profile Code", "NIN Verification"],
       featuredImage: "",
@@ -275,7 +281,7 @@ If you encounter SMS delivery failures, profile code discrepancies, or require g
       officialSourceUrl: "https://unilag.edu.ng",
       publishDate: "October 10, 2026",
       readTime: "4 min read",
-      author: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
+      author: "Isaiah (Menmex Digital Solution team network)",
       views: 980,
       tags: ["UNILAG", "Post-UTME", "Screening", "Catchment Areas"],
       featuredImage: "",
@@ -314,7 +320,7 @@ Total aggregate determines departmental cut-off placement across Merit, Catchmen
       officialSourceUrl: "https://education.gov.ng",
       publishDate: "October 5, 2026",
       readTime: "6 min read",
-      author: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
+      author: "Isaiah (Menmex Digital Solution team network)",
       views: 1850,
       tags: ["BEA Scholarship", "Overseas Grants", "Undergraduate", "Postgraduate"],
       featuredImage: "",
@@ -345,7 +351,7 @@ Candidates can reach out to MNX DIGITAL TEAM SOLUTIONS for documentation assista
       officialSource: "MNX DIGITAL TEAM SOLUTIONS Educational Advisory & Technical Verification Desk",
       publishDate: "September 28, 2026",
       readTime: "4 min read",
-      author: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
+      author: "Isaiah (Menmex Digital Solution team network)",
       views: 2310,
       tags: ["JAMB CAPS", "O'Level Upload", "Awaiting Result", "WAEC/NECO"],
       featuredImage: "",
@@ -376,7 +382,7 @@ O'Level uploads cannot be performed from domestic mobile phones or personal cybe
       officialSourceUrl: "https://nbte.gov.ng",
       publishDate: "September 22, 2026",
       readTime: "3 min read",
-      author: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
+      author: "Isaiah (Menmex Digital Solution team network)",
       views: 740,
       tags: ["Polytechnic", "ND Admission", "HND", "NBTE"],
       featuredImage: "",
@@ -403,7 +409,7 @@ The National Board for Technical Education (NBTE) together with Federal and Stat
       officialSource: "MNX DIGITAL TEAM SOLUTIONS Educational Advisory & Analysis",
       publishDate: "September 15, 2026",
       readTime: "5 min read",
-      author: "Isaiah (MNX DIGITAL TEAM SOLUTIONS)",
+      author: "Isaiah (Menmex Digital Solution team network)",
       views: 1190,
       tags: ["Catchment Area", "ELDS", "Merit List", "Admissions Policy"],
       featuredImage: "",

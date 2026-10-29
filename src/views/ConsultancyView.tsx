@@ -397,7 +397,7 @@ export const ConsultancyView: React.FC = () => {
             {/* Advisory Guarantee Box */}
             <div className="bg-[#0B1B3D] text-white rounded-xl p-6 border border-slate-800 space-y-4">
               <span className="text-sky-400 text-xs font-semibold uppercase tracking-wider block">
-                The MNX Commitment
+                The Menmex Commitment
               </span>
               <h3 className="text-base font-bold text-white leading-tight">
                 Accredited Verification & Transparent Service
@@ -419,7 +419,7 @@ export const ConsultancyView: React.FC = () => {
 
               <div className="pt-2 border-t border-slate-800/80">
                 <a
-                  href={`https://wa.me/${(data?.settings?.contactDetails?.whatsapp || '070531572').replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20MNX%20DIGITAL%20TEAM%20SOLUTIONS,%20I%20have%20an%20urgent%20enquiry.`}
+                  href={`https://wa.me/${(data?.settings?.contactDetails?.whatsapp || '07053157243').replace(/^0/, '234').replace(/[^0-9]/g, '')}?text=Hello%20Menmex%20Digital%20Solution%20team%20network,%20I%20have%20an%20urgent%20enquiry.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
